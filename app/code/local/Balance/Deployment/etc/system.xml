@@ -1,0 +1,135 @@
+<config>
+	<tabs>
+		<balance translate="label">
+			<label>Balance</label>
+			<sort_order>100</sort_order>
+		</balance>
+	</tabs>
+	<sections>
+		<balance_deployment translate="label">
+			<label>Deployment</label>
+			<tab>balance</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>400</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>0</show_in_store>
+			<groups>
+				<about translate="label">
+					<label>About</label>
+					<comment><![CDATA[Deployment Extension Provided By <a href="http://www.balanceinternet.com.au/" target="_blank">Balance Internet</a><br/><br/> Servers need to be configured properly for the extension to work.]]></comment>
+					<sort_order>0</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<user>
+							<label>Server User</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <comment><![CDATA[Server user for cluster environment]]></comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</user>
+					</fields>
+				</about>
+				<git>
+					<label>Git Management</label>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<fields>
+						<enabled>
+							<label>Enable Git Version Control (Management)</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</enabled>
+						<ips>
+							<label>Server Ip Address</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <comment><![CDATA[If it's a cluster environment, then use ; to seperate servers. Note: ip addresses have to be accessible via ssh.]]></comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</ips>
+					</fields>
+				</git>
+				<apc>
+					<label>APC</label>
+					<sort_order>2</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<fields>
+						<enabled>
+							<label>Enable Apc</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</enabled>
+						<ips>
+							<label>Server Ip Address</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <comment><![CDATA[If it's a cluster environment, then use ; to seperate servers. Note: ip addresses have to be accessible via http.]]></comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</ips>
+					</fields>
+				</apc>
+				<memcached>
+					<label>Memcached Cache</label>
+					<sort_order>3</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<fields>
+						<enabled>
+							<label>Enable Memcached</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</enabled>
+					</fields>
+				</memcached>
+				<varnish>
+					<label>Varnish Cache</label>
+					<sort_order>4</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<fields>
+						<enabled>
+							<label>Enable Varnish</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</enabled>
+						<ips>
+							<label>Server Ip Address</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <comment><![CDATA[If it's a cluster environment, then use ; to seperate servers. Note: ip addresses have to be accessible via ssh.]]></comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+						</ips>
+					</fields>
+				</varnish>
+			</groups>
+		</balance_deployment>
+	</sections>
+</config>

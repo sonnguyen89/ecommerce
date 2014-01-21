@@ -1,0 +1,73 @@
+<div id="deployment">
+<div class="content-header">
+	<h3>Deployment Management</h3>
+</div>
+<?php $services = $this->getServices();?>
+<?php if($this->canShow()):?>
+<script src="<?php echo $this->getJsUrl() ?>mage/adminhtml/loader.js" type="text/javascript"></script>
+
+<div id="loadingmask" style="display: none;">
+	<div class="loader" id="loading-mask-loader">
+		<img src="<?php echo str_replace("index.php/","",$this->getUrl()) ?>skin/adminhtml/default/default/images/ajax-loader-tr.gif" alt="<?php echo $this->__('Loading...') ?>"/><?php echo $this->__('Loading...') ?>
+	</div>
+	<div id="loading-mask"></div>
+</div>
+<?php foreach($services as $service):?>
+<?php 
+	$repo = $service->getRepo();
+?>
+<div class="section">
+	<h3><?php echo ucfirst($service->getName())?></h3>
+	<ul class="controllers">
+		<?php foreach($repo as $key => $ss):?>
+		<li>
+		<button class="button" onClick="execute('<?php echo $service->getName()?>','<?php echo $key?>', '<?php echo $ss['type']?>')">
+			<span><span><?php echo $ss['buttonText']?></span></span>
+		</button>
+		<?php if($ss['type'] == 'buttonText'):?>
+			<span>
+				<input type="text" name="<?php echo $key?>text" id ="<?php echo $key?>text" />
+		    </span>
+		<?php endif;?>
+		<div class="desc">
+			<?php echo $ss['description']?>
+		</div>
+		</li>
+		<?php endforeach; ?>
+	</ul>
+</div>
+<?php endforeach;?>
+
+<div id="shell"></div>
+    
+
+<script type="text/javascript">
+	var FORM_KEY="<?php echo Mage::getSingleton('core/session')->getFormKey() ?>";
+	function execute(service, cmd, type){
+		Element.show('loadingmask');
+		var reloadurl = '<?php echo Mage::helper("adminhtml")->getUrl('/deployment/execute') ?>';
+		if($(type == 'buttonText') ){
+		 	var param = $(cmd+'text').value;
+		}
+		if(type == 'buttonText' && param.length){
+			var parameters = {form_key:FORM_KEY, cmd:cmd, service:service, param:param};
+		}else{
+			var parameters = {form_key:FORM_KEY, cmd:cmd, service:service};
+		}
+		new Ajax.Request(reloadurl,{
+				method: 'post',
+				parameters: parameters,
+				onComplete: function(transport) {
+								Element.hide('loadingmask');
+								var shell = $('shell');
+								shell.innerHTML = "";
+								shell.innerHTML = transport.responseText;
+						}
+			});
+		return false;
+	}
+</script>
+<?php else: ?>
+Please configure deployment extension before using this management tools.
+<?php endif; ?>
+</div>

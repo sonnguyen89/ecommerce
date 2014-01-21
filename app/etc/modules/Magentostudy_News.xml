@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/*
+*Module initial config
+*
+*
+*@author Magento
+*/
+ -->
+ <config>
+ 	<modules>
+ 	<Magentostudy_News>
+ 		<active>true</active>
+ 		<codePool>local</codePool>
+ 		      <depends>
+                <Mage_Adminhtml />
+            </depends>
+ 	</Magentostudy_News>
+ 	</modules>
+ </config>

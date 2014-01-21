@@ -1,0 +1,21 @@
+{
+    "minimum-stability":"dev",
+    "require":{
+        "balance/deployment":"dev-master"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.firegento.com"
+        },
+        {
+            "type": "composer",
+            "url": "http://satis.balance.dev"
+        }
+    ],
+    "extra":{
+        "magento-root-dir" : "./",
+        "magento-deploystrategy" : "copy",
+        "magento-force" : "true"
+    }
+}

@@ -1,0 +1,123 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "873f72bdf72589d277e6630e3435086d",
+    "packages": [
+        {
+            "name": "balance/deployment",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@bitbucket.org:richardcaigang/balance-deployment.git",
+                "reference": "55582e36695180a7d21f37b26607c44f7f11b707"
+            },
+            "require": {
+                "magento-hackathon/magento-composer-installer": "*"
+            },
+            "type": "magento-module",
+            "license": [
+                "GPL-2 or New-BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Richard Cai"
+                }
+            ],
+            "description": "magento deployment extension on production",
+            "homepage": "https://bitbucket.org/richardcaigang/balance-deployment",
+            "time": "2013-05-15 03:59:41"
+        },
+        {
+            "name": "magento-hackathon/magento-composer-installer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/magento-hackathon/magento-composer-installer.git",
+                "reference": "33ec1c324c75d5951adb9610d0af0e47a0f20bbe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/magento-hackathon/magento-composer-installer/zipball/33ec1c324c75d5951adb9610d0af0e47a0f20bbe",
+                "reference": "33ec1c324c75d5951adb9610d0af0e47a0f20bbe",
+                "shasum": ""
+            },
+            "require-dev": {
+                "composer/composer": "*",
+                "phpunit/phpunit": "*"
+            },
+            "suggest": {
+                "magento-hackathon/composer-command-integrator": "*"
+            },
+            "type": "composer-installer",
+            "extra": {
+                "composer-command-registry": [
+                    "MagentoHackathon\\Composer\\Magento\\Command\\DeployCommand"
+                ],
+                "class": "MagentoHackathon\\Composer\\Magento\\Installer"
+            },
+            "autoload": {
+                "psr-0": {
+                    "MagentoHackathon\\Composer\\Magento": "src/"
+                }
+            },
+            "license": [
+                "OSL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Fahlke aka Flyingmana",
+                    "email": "daniel@digitalmanufaktur.com"
+                },
+                {
+                    "name": "Jörg Weller",
+                    "email": "weller@flagbit.de"
+                },
+                {
+                    "name": "Karl Spies",
+                    "email": "karl.spies@gmx.net"
+                },
+                {
+                    "name": "Tobias Vogt",
+                    "email": "tobi@webguys.de"
+                },
+                {
+                    "name": "David Fuhr",
+                    "email": "fuhr@flagbit.de"
+                },
+                {
+                    "name": "Vinai Kopp",
+                    "email": "vinai@netzarbeiter.com"
+                }
+            ],
+            "description": "Composer installer for Magento modules",
+            "homepage": "https://github.com/magento-hackathon/magento-composer-installer",
+            "keywords": [
+                "composer-installer",
+                "magento"
+            ],
+            "support": {
+                "source": "https://github.com/magento-hackathon/magento-composer-installer/tree/master",
+                "issues": "https://github.com/magento-hackathon/magento-composer-installer/issues"
+            },
+            "time": "2013-04-16 11:14:05"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "balance/deployment": 20
+    },
+    "platform": [
+
+    ],
+    "platform-dev": [
+
+    ]
+}

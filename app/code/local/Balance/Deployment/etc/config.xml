@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Balance_Deployment>
+            <version>0.0.1</version>
+        </Balance_Deployment>
+    </modules>
+    <global>
+    	<helpers>
+            <deployment>
+                <class>Balance_Deployment_Helper</class>
+            </deployment>
+        </helpers>
+        <models>
+            <deployment>
+                <class>Balance_Deployment_Model</class>
+            </deployment>
+        </models>
+        <blocks>
+            <deployment>
+                <class>Balance_Deployment_Block</class>
+            </deployment>
+        </blocks>
+    </global>
+    <admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<Balance_Deployment before="Mage_Adminhtml">Balance_Deployment_Adminhtml</Balance_Deployment>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+    <adminhtml>
+    	<menu>
+            <balance>
+            	<title>Balance</title>
+				<sort_order>9999</sort_order>    
+                <children>
+                	<deployment translate="title" module="deployment">
+                		<title>Deployment</title>
+	                    <sort_order>20</sort_order>
+	                    <action>adminhtml/deployment/</action>
+	                	<children>
+		                    <index translate="title" module="deployment">
+		                        <title>Actions</title>
+		                        <action>adminhtml/deployment/</action>
+		                    </index>
+	                    </children>
+                	</deployment>
+                </children>
+            </balance>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <balance_deployment>
+                                            <title>Deployment</title>
+                                            <sort_order>50</sort_order>
+                                        </balance_deployment>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <deployment>
+                    <file>balance/deployment.xml</file>
+                </deployment>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

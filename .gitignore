@@ -1,0 +1,29 @@
+# magento db config #
+####################
+app/etc/local.xml
+
+# magento folder #
+#####################
+media/*
+downloader/*
+var/*
+!var/.htaccess
+!var/backup/*
+
+# wordpress #
+#############
+#blog/wp-content/uploads/*
+#blog/wp-config.php
+
+# OS generated files #
+######################
+.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# eclipse file #
+##############
+.buildpath
+.project
+.settings/*

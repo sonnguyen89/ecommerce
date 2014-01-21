@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.0.1">
+	<adminhtml_deployment_index>
+		<reference name="head">
+        	  <action method="addCss"><name>deployment.css</name></action>
+        </reference>
+		<reference name="content">
+			<block type="deployment/adminhtml_server" name="deployment.server" template="/deployment/server.phtml" />
+		</reference>
+	</adminhtml_deployment_index>
+</layout>

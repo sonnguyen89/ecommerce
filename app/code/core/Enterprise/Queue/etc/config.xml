@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Enterprise Edition
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Magento Enterprise Edition License
+ * that is bundled with this package in the file LICENSE_EE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.magentocommerce.com/license/enterprise-edition
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    Enterprise
+ * @package     Enterprise_Queue
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://www.magentocommerce.com/license/enterprise-edition
+ */
+-->
+<config>
+    <modules>
+        <Enterprise_Queue>
+            <version>1.12.0.0</version>
+        </Enterprise_Queue>
+    </modules>
+    <global>
+        <models>
+            <enterprise_queue>
+                <class>Enterprise_Queue_Model</class>
+                <resourceModel>enterprise_queue_resource</resourceModel>
+            </enterprise_queue>
+            <enterprise_queue_resource>
+                <class>Enterprise_Queue_Model_Resource</class>
+                <deprecatedNode>enterprise_queue_mysql4</deprecatedNode>
+                <entities>
+                    <queue>
+                        <table>enterprise_queue_queue</table>
+                    </queue>
+                    <task>
+                        <table>enterprise_queue_task</table>
+                    </task>
+                </entities>
+            </enterprise_queue_resource>
+        </models>
+        <blocks>
+            <enterprise_queue>
+                <class>Enterprise_Queue_Block</class>
+            </enterprise_queue>
+        </blocks>
+        <helpers>
+            <enterprise_queue>
+                <class>Enterprise_Queue_Helper</class>
+            </enterprise_queue>
+        </helpers>
+        <resources>
+            <enterprise_queue_setup>
+                <setup>
+                    <module>Enterprise_Queue</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+            </enterprise_queue_setup>
+        </resources>
+        <queue>
+            <default>main_queue</default>
+        </queue>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Enterprise_Queue before="Mage_Adminhtml">Enterprise_Queue_Adminhtml</Enterprise_Queue>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <enterprise_queue>
+                    <file>enterprise/queue.xml</file>
+                </enterprise_queue>
+            </updates>
+        </layout>
+    </adminhtml>
+    <!--<workers>
+        <events>
+            <some_event>
+                <observers>
+                    <test>
+                        <type>object</type>
+                        <class>enterprise_queue/observer</class>
+                        <method>doSomething</method>
+                    </test>
+                </observers>
+            </some_event>
+        </events>
+    </workers>-->
+    <crontab>
+        <jobs>
+            <enterprise_queue_cleanup_messages>
+                <schedule>
+                    <cron_expr>0 0 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>enterprise_queue/observer::deleteUnnecessaryMessages</model>
+                </run>
+            </enterprise_queue_cleanup_messages>
+            <enterprise_queue_run_receiver>
+                <schedule>
+                    <cron_expr>* * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>enterprise_queue/observer::runTasks</model>
+                </run>
+            </enterprise_queue_run_receiver>
+        </jobs>
+    </crontab>
+</config>
