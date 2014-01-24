@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+
+-->
+<layout version="0.1.0">
+
+<default>
+	<reference name="root">
+		<action method="addBodyClass" ifconfig="meigee_lookbook_general/appearance/retina"><classname>retina-ready</classname></action>
+	</reference>
+	<reference name="head">
+       <action method="addItem"><type>skin_js</type><name>js/jquery.easing.js</name><params/></action>
+		
+		<!--Removing items set in the page.xml we don't need since we're integrating the HTML 5 boilerplate-->
+		<action method="removeItem"><type>skin_js</type><name>js/ie6.js</name><if>lt IE 7</if></action>
+		<action method="removeItem"><type>js</type><name>lib/ds-sleight.js</name><params/><if>lt IE 7</if></action>
+		<action method="removeItem"><type>css</type><name>css/print.css</name></action>
+		<!--End "Removing items"-->
+
+		<!--Adding js script for lt IE9-->
+		<action method="addItem"><type>skin_js</type><name>js/script_ie.js</name><params/><if>lt IE 10</if></action>  
+		
+		<action method="addItem"><type>skin_js</type><name>js/html5.js</name><params/><if>lt IE 9</if></action>
+		<action method="addItem"><type>skin_js</type><name>js/css3-mediaqueries.js</name><params/><if>lt IE 9</if></action>
+
+		<action method="addItem"><type>skin_js</type><name>js/selectivizr-min.js</name><params/><if>lt IE 9</if></action>
+		<!--<action method="addItem"><type>skin_js</type><name>js/dd_belatedpng.js</name><params/><if>lt IE 7</if></action>-->
+
+        <!--Adding my own jQuery custom script-->
+		<action method="addItem"><type>skin_js</type><name>js/jquery.selectbox-0.2.min.js</name><params/></action>
+        <action method="addItem"><type>skin_js</type><name>js/script.js</name><params/></action>
+		<action method="addItem"><type>skin_js</type><name>js/jquery.iosslider.min.js</name><params/></action>
+
+		<!--Adding "To Top" functionality-->
+		<action method="addItem" ifconfig="meigee_lookbook_general/otheroptions/totop"><type>skin_js</type><name>js/jquery.ui.totop.js</name><params/></action>
+
+		<!--Grid-->
+		<action method="addCss"><stylesheet helper="ThemeOptionsLookbook/switchGrid" /></action>
+		
+		<!--Font Awesome-->
+        <action method="addCss"><stylesheet>css/font-awesome.min.css</stylesheet><params/></action>
+		
+		<!--Retina Styles-->
+        <action method="addCss" ifconfig="meigee_lookbook_general/appearance/retina"><stylesheet>css/retina.css</stylesheet><params/></action>
+		
+		<!--Skin-->
+        <action method="addCss"><stylesheet>css/skin.css</stylesheet><params/></action>
+		<action method="addItem"><type>skin_css</type><name>css/styles-ie-8.css</name><params/><if>IE 8</if></action>
+		
+        <!--End "Adding items" -->
+	</reference>
+	
+	<reference name="header">
+		<block type="page/html" name="header_slider_container" template="meigee/headerslider.phtml">
+			<block type="cms/block" name="header_slider">
+				<action method="setBlockId"><block_id>header_slider</block_id></action>
+			</block>
+        </block>
+    </reference>
+
+        <reference name="sidebar">
+			<action method="unsetChild"><name>left.permanent.callout</name></action>
+			<action method="unsetChild"><name>right.permanent.callout</name></action>
+        </reference>
+
+        <!-- Custom static blocks -->
+        <!--<reference name="header">
+		
+        </reference>-->
+        <reference name="footer">
+        	<!-- Uncomment following code to delete "Advanced Search" and "Orders and Returns" link fro the footer links  -->
+        	<!-- 
+        	<reference name="footer_links">
+				<action method="removeLinkByUrl"><url helper="catalogsearch/getAdvancedSearchUrl"/></action>
+				<remove name="return_link" />
+			</reference> 
+			-->
+			<block type="cms/block" name="lookbook_social_links">
+				<action method="setBlockId"><block_id>lookbook_social_links</block_id></action>
+			</block>
+			<block type="cms/block" name="lookbook_custom_footer">
+				<action method="setBlockId"><block_id>lookbook_custom_footer</block_id></action>
+			</block>
+			<block type="cms/block" name="custom_footer_2">
+				<action method="setBlockId"><block_id>custom_footer_2</block_id></action>
+			</block>
+			<block type="cms/block" name="footer_text_block">
+				<action method="setBlockId"><block_id>footer_text_block</block_id></action>
+			</block>
+        </reference>
+        <!--End Custom static blocks -->
+	<reference name="wishlist_link"> 
+		<action method="__set">
+			<name>a_params</name><value>class="top-link-wishlist"</value>
+		</action> 
+	</reference>
+</default>
+
+<cms_index_index>
+	<reference name="head">
+		<!--Adding "Fancybox-->
+		<action method="addCss"><stylesheet helper="ThemeOptionsLookbook/fancySwitcher" /></action>
+		<action method="addItem"><type>skin_js</type><name helper="ThemeOptionsLookbook/fancySwitcherJS" /></action>
+	</reference>
+</cms_index_index>
+<catalog_category_default>
+	<reference name="head">
+		<!--Adding "Fancybox-->
+		<action method="addCss"><stylesheet helper="ThemeOptionsLookbook/fancySwitcher" /></action>
+		<action method="addItem"><type>skin_js</type><name helper="ThemeOptionsLookbook/fancySwitcherJS" /></action>
+		
+		<action method="addItem"><type>skin_js</type><name>js/jquery.isotope.min.js</name><params/></action>
+	</reference>
+</catalog_category_default>
+<catalog_category_layered>
+	<reference name="head">
+		<!--Adding "Fancybox-->
+		<action method="addCss"><stylesheet helper="ThemeOptionsLookbook/fancySwitcher" /></action>
+		<action method="addItem"><type>skin_js</type><name helper="ThemeOptionsLookbook/fancySwitcherJS" /></action>
+		
+		<action method="addItem"><type>skin_js</type><name>js/jquery.isotope.min.js</name><params/></action>
+	</reference>
+</catalog_category_layered>
+
+<catalogsearch_result_index>
+	<reference name="head">
+		<!--Adding "Fancybox-->
+		<action method="addCss"><stylesheet helper="ThemeOptionsLookbook/fancySwitcher" /></action>
+		<action method="addItem"><type>skin_js</type><name helper="ThemeOptionsLookbook/fancySwitcherJS" /></action>
+		
+		<action method="addItem"><type>skin_js</type><name>js/jquery.isotope.min.js</name><params/></action>
+	</reference>
+</catalogsearch_result_index>
+
+<catalogsearch_advanced_result>
+	<reference name="head">
+		<!--Adding "Fancybox-->
+		<action method="addCss"><stylesheet helper="ThemeOptionsLookbook/fancySwitcher" /></action>
+		<action method="addItem"><type>skin_js</type><name helper="ThemeOptionsLookbook/fancySwitcherJS" /></action>
+		
+		<action method="addItem"><type>skin_js</type><name>js/jquery.isotope.min.js</name><params/></action>
+	</reference>
+</catalogsearch_advanced_result>
+
+<print>
+	<reference name="head">
+		<!--Skin-->
+		<action method="addCss"><stylesheet>css/skin.css</stylesheet><params/></action>
+
+		<!--Adding my own jQuery custom script-->
+		<action method="addItem"><type>skin_js</type><name>js/script.js</name><params/></action>
+	</reference>
+</print>
+<!-- Custom static blocks -->
+
+<catalog_product_view>
+		<reference name="head">
+			<!--Adding "Fancybox-->
+			<action method="addCss"><stylesheet helper="ThemeOptionsLookbook/fancySwitcher" /></action>
+			<action method="addItem"><type>skin_js</type><name helper="ThemeOptionsLookbook/fancySwitcherJS" /></action>
+		</reference>
+        <reference name="content">
+                <reference name="product.info">
+                        <block type="cms/block" name="product_custom">
+                                <action method="setBlockId"><block_id>product_custom</block_id></action>
+                        </block>
+                        <block type="cms/block" name="product_custom_2">
+                                <action method="setBlockId"><block_id>product_custom_2</block_id></action>
+                        </block>
+                </reference>
+        </reference>
+</catalog_product_view>
+<!--End Custom static blocks -->
+
+<catalog_product_view translate="label">
+        <reference name="head">
+                <!--Cloud Zoom-->
+                <action method="addItem"><type>skin_js</type><name>js/cloud-zoom.1.0.2.min.js</name><params/></action>
+        </reference>
+</catalog_product_view>
+
+<print>
+        <reference name="head">
+                <action method="addCss"><stylesheet>css/grid.css</stylesheet></action>
+        </reference>
+</print>
+
+</layout>

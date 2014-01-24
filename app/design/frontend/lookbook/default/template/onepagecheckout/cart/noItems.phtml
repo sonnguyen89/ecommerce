@@ -1,0 +1,36 @@
+<div class="col-main iwd-ec-col-main">
+<div class="page-title"><h1><?php echo $this->__('THE SHOPPING CART IS CURRENTLY EMPTY') ?></h1></div>
+<div class="cleardiv"></div>
+<div class="cart-empty">
+<div class="cart-empty-content">
+<a id="empty-cart-link" href='http://www.interiorwebdesign.com/magento/magento-one-step-checkout-module.html' target='_blank' title='One Page Checkout by IWD'>
+	<i class="icon-shopping-cart"></i>
+</a>
+<div id="iwd-emptycart-writeup">
+<?php
+$storePhone = Mage::getStoreConfig('general/store_information/phone');
+$storeName = Mage::getStoreConfig('general/store_information/name');
+if(empty($storeName)){
+	$store = Mage::app()->getStore();
+	$storeName = $store->getName();
+}
+$contact_email	= Mage::getStoreConfig('trans_email/ident_general/email');
+if(empty($contact_email))
+	$contact_email = Mage::getStoreConfig('contacts/email/recipient_email');
+?>
+<p class="writeup"><?php echo $this->__('Thank you for visiting')?> <?php echo $storeName;?>.<br /><?php echo $this->__('If you are having issues with the shopping cart, <br />please')?> 
+<a href="mailto:<?php echo $contact_email;?>"><?php echo $this->__('email support')?></a><?php if(!empty($storePhone)){echo ' ';echo $this->__('or call');echo " $storePhone";}?>.</p>
+<div id="buttonwrapper">
+<div class="iwdbutton">
+	<button type="button" title="<?php echo $this->__('CONTINUE SHOPPING') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getContinueShoppingUrl();?>')"><span><span><?php echo $this->__('CONTINUE SHOPPING') ?></span></span></button>
+</div>
+<!--	Copyright 2012 Interior Web Design - interiorwebdesign.com
+		Released under the MIT license
+		The following paragraph (p.iwdtrade) must not be removed, relocated, or hidden from view 
+		using CSS, JS or any other method without written expressed permission from Interior Web Design -->
+<p class="iwdtrade">&copy;Checkout provided by <a href="http://www.interiorwebdesign.com/" target="_blank">Interior Web Design</a></p>
+</div>
+</div>
+</div>
+</div>	                
+</div>

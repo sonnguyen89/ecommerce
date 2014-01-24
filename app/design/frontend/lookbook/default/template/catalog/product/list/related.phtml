@@ -1,0 +1,84 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+?>
+<?php 
+    if($this->getItems()->getSize()):
+    $productpage_collateral_related = MAGE::helper('ThemeOptionsLookbook')->getThemeOptionsLookbook('productpage_collateral_related'); 
+?>
+<section class="block-related<?php if (!($productpage_collateral_related == 'related_slider' && count($this->getItems())>4)){echo ' no-slider';} ?>">
+    <header>
+        <h2><?php echo $this->__('Related Products') ?></h2>
+    </header>
+    <div class="block-content">
+        <p class="block-subtitle"><a href="#" onclick="selectAllRelated(this); return false;"><?php echo $this->__('select all') ?></a></p>
+        <div <?php if ($productpage_collateral_related == 'related_slider' && count($this->getItems())>4): ?>id="block-related-slider"<?php else:?> class="no-slider" <?php endif; ?>>
+            <ul class="carousel-ul">
+            <?php $i=0; foreach($this->getItems() as $_item): ?>
+                <li class="item">
+                    <div class="product">
+                        <div class="grid-indent">
+                            <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(170, null) ?>" <?php echo MAGE::helper('ThemeOptionsLookbook/Retina')->getRetinaData('related', $_item); ?> alt="<?php echo $this->escapeHtml($_item->getName()) ?>" /></a>
+                            <div class="product-details">
+                                <p class="product-name"><a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->escapeHtml($_item->getName()) ?></a></p>
+								<?php if(!$_item->isComposite() && $_item->isSaleable()): ?>
+                                    <?php if (!$_item->getRequiredOptions()): ?>
+                                        <input type="checkbox" class="checkbox related-checkbox" id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" />
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                <?php echo $this->getPriceHtml($_item, true, '-related') ?>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            <?php $i++; endforeach ?>
+            </ul>
+        </div>
+    </div>
+    <?php if ($productpage_collateral_related == 'related_slider' && count($this->getItems())>4): ?>
+	<div class = 'prev unselectable'><i class="icon-angle-left"></i></div>
+	<div class = 'next'><i class="icon-angle-right"></i></div>
+	<?php endif; ?>
+    <script type="text/javascript">
+    //<![CDATA[
+    $$('.related-checkbox').each(function(elem){
+        Event.observe(elem, 'click', addRelatedToProduct)
+    });
+
+    var relatedProductsCheckFlag = false;
+    function selectAllRelated(txt){
+        if (relatedProductsCheckFlag == false) {
+            $$('.related-checkbox').each(function(elem){
+                elem.checked = true;
+            });
+            relatedProductsCheckFlag = true;
+            txt.innerHTML="<?php echo $this->__('unselect all') ?>";
+        } else {
+            $$('.related-checkbox').each(function(elem){
+                elem.checked = false;
+            });
+            relatedProductsCheckFlag = false;
+            txt.innerHTML="<?php echo $this->__('select all') ?>";
+        }
+        addRelatedToProduct();
+    }
+
+    function addRelatedToProduct(){
+        var checkboxes = $$('.related-checkbox');
+        var values = [];
+        for(var i=0;i<checkboxes.length;i++){
+            if(checkboxes[i].checked) values.push(checkboxes[i].value);
+        }
+        if($('related-products-field')){
+            $('related-products-field').value = values.join(',');
+        }
+    }
+    //]]>
+    </script>
+</section>
+<?php endif ?>

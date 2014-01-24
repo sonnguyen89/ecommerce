@@ -1,0 +1,155 @@
+<?php 
+/*****/
+$sliderConfig = MAGE::helper('ThemeOptionsLookbook')->getThemeOptionsLookbook('headerslider');
+/*****/
+
+$show = 0;
+if ($sliderConfig ['enabled']):
+
+  /**/
+  if ($sliderConfig['onlyhome']):
+    if (Mage::getSingleton('cms/page')->getIdentifier() == 'home'  && Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms'):
+      $show = 1;
+    endif;
+  else:
+    $show = 1;
+  endif; 
+  /**/
+
+if ($show): 
+$slidesList = explode(",", str_replace(" ", "", $sliderConfig ['slides']));
+?>
+<div class="header-slider-holder loading">
+	<div class="loader"></div>
+	<div class="header-slider-container">
+		<div class="container">
+			<div class="iosSlider">
+				<div class="slider">
+					<?php
+						foreach ($slidesList as $slideID) {
+							$html = '';
+							$html .= '<div class="item" id="item_' . $slideID . '">';
+							$html .= $this->getLayout()->createBlock('cms/block')->setBlockId($slideID)->toHtml();
+							$html .= '</div>';
+							echo $html;
+						}
+					?>
+				</div>
+				<div class="container_12">
+					<div class = 'next'></div>
+					<div class = 'prev unselectable'></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	/* Slider Preloader */
+	var sliderHolder = jQuery('.header-slider-holder');
+	var sliderLoader = sliderHolder.find('.loader');
+	
+	var progress = 0;
+	function animateFunc(){
+		if(progress > 100){
+			return false;
+		}
+		sliderLoader.html(progress+'%');
+		progress+=5;
+		setTimeout(animateFunc, 25);
+	}
+	setTimeout(animateFunc, 25);
+	
+	function loaded(){
+		setTimeout(function(){
+		
+			img =  jQuery('.header-slider-container .iosSlider .slider .item img:first');
+			height = img.height();
+			if(img.parent('a')){
+				height = img.parent('a').outerHeight();
+			}
+		
+			sliderLoader.html('');
+			sliderLoader.fadeOut(1500, function(){
+				jQuery(this).remove();
+			});
+			
+			
+			sliderHolder.animate({
+			  height: height
+			}, 500, "easeOutExpo", function(){
+				sliderHolder.removeClass('loading').css('height', 'auto');
+			});
+			
+			
+			
+		}, 1000);
+	}
+	
+	
+  jQuery(window).load(function(){
+	/* slider_items_length = jQuery('.slider .item').size();
+	if(slider_items_length > 1){
+		var slider_bullets = '<ul class="slideSelectors">';
+		for(i=1; i<=slider_items_length; i++){
+			if(i==1){selected_item = ' selected'}else{selected_item = ''}
+			slider_bullets += '<li class="button-item' + selected_item + '" id="item' + i + '">' + i + '</li>'
+		}
+		slider_bullets += '</ul>';
+		jQuery('.header-slider-container .iosSlider .prev').after(slider_bullets);
+	} */
+  
+	//Slider Container Ratio
+	var slider_container = jQuery('.header-slider-container');
+	var slider_img =  jQuery('.header-slider-container .iosSlider .slider .item img:first');
+	var sliderHeight = slider_img.height();
+	if(slider_img.parent('a')){
+		sliderHeight = slider_img.parent('a').outerHeight();
+	}
+	var ratio = Math.round((sliderHeight/slider_img.width())*100);
+	slider_container.css({
+		'padding-bottom': ratio + '%',
+		'height': sliderHeight
+	});
+	
+	
+    jQuery('.iosSlider').iosSlider({
+      responsiveSlideWidth: true,
+      snapToChildren: true,
+      desktopClickDrag: true,
+      infiniteSlider: true,
+      /* navSlideSelector: '.slideSelectors .button-item', */
+      navNextSelector: '.iosSlider .next',
+      navPrevSelector: '.iosSlider .prev',
+	  snapSlideCenter: true,
+	  startAtSlide: 2,
+	  onSlideComplete: slideComplete,
+	  onSliderLoaded: sliderLoaded,
+	  onSlideChange: slideChange,
+      <?php if(isset($sliderConfig ['autoSlide'])): ?>autoSlide: <?php echo $sliderConfig ['autoSlide']; ?><?php endif; ?>
+      <?php if(isset($sliderConfig ['autoSlideTimer'])): ?>, autoSlideTimer: <?php echo $sliderConfig ['autoSlideTimer']; ?><?php endif; ?>
+	  <?php if(isset($sliderConfig ['autoSlideTransTimer'])): ?>, autoSlideTransTimer: <?php echo $sliderConfig ['autoSlideTransTimer']; endif; ?>
+	  <?php if(isset($sliderConfig ['desktopClickDrag'])): ?>, desktopClickDrag: <?php echo $sliderConfig ['desktopClickDrag']; endif; ?>
+	  <?php if(isset($sliderConfig ['infiniteSlider'])): ?>, infiniteSlider: <?php echo $sliderConfig ['infiniteSlider']; endif; ?>
+    });
+    
+	
+	function slideChange(args) {
+		/* jQuery('.slideSelectors .button-item').removeClass('selected');
+		jQuery('.slideSelectors .button-item:eq(' + (args.currentSlideNumber-1) + ')').addClass('selected'); */
+	}
+	
+	function slideComplete(args) {
+		
+	}
+	
+	function sliderLoaded(args) {
+		slideComplete(args);
+		slideChange(args);
+		loaded();
+	}
+    
+  });
+</script>
+    <?php 
+  endif;
+endif;

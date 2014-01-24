@@ -1,0 +1,5 @@
+<?php // Tabs
+$tweets = $this->getLatestTweets();
+?>
+<a class="twitter-timeline" href="https://twitter.com/<?php echo $tweets['twitter_username']; ?>" data-widget-id="<?php echo $tweets['twitter_widget_id']; ?>" data-chrome="noscrollbar noheader nofooter noborders transparent" data-tweet-limit="<?php echo $tweets['tweet_limit']; ?>" data-show-replies="false">Tweets by @<?php echo $tweets['twitter_username']; ?></a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>

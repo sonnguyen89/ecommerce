@@ -1,0 +1,39 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+?>
+<?php
+/**
+ * Currency switcher
+ *
+ * @see Mage_Directory_Block_Currency
+ */
+?>
+<?php 
+/*****/
+$curr_switcher = MAGE::helper('ThemeOptionsLookbook')->getThemeOptionsLookbook('curr_switcher'); 
+/*****/
+?>
+<?php if($this->getCurrencyCount()>1): ?>
+<div class="form-currency">
+    <?php if ($curr_switcher['label'] == true): ?><label for="select-currency"><?php echo $this->__('Select Your Currency') ?></label><?php endif; ?>
+    <?php if ($curr_switcher['status'] == 'currency_select'): ?>
+        <select id="select-currency" name="currency" title="<?php echo $this->__('Select Your Currency') ?>" onchange="setLocation(this.value)">
+        <?php foreach ($this->getCurrencies() as $_code => $_name): ?>
+            <option value="<?php echo $this->getSwitchCurrencyUrl($_code) ?>"<?php if($_code==$this->getCurrentCurrencyCode()): ?> selected="selected"<?php endif; ?>>
+                <?php echo $_name ?> - <?php echo $_code ?>
+            </option>
+        <?php endforeach; ?>
+        </select>
+    <?php else: ?>
+        <?php foreach ($this->getCurrencies() as $_code => $_name): ?>
+            <a href="<?php echo $this->getSwitchCurrencyUrl($_code) ?>"><?php echo Mage::app()->getLocale()->currency($_code)->getSymbol(); ?></a>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
+<?php endif; ?>

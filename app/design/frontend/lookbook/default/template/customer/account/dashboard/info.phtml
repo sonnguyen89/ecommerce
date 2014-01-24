@@ -1,0 +1,44 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+?>
+<div class="grid_4 alpha">
+    <div class="box">
+        <div class="box-title">
+            <h3><?php echo $this->__('Contact Information') ?></h3>
+            <a href="<?php echo $this->getUrl('customer/account/edit') ?>"><i class="icon-pencil"></i></a>
+        </div>
+        <div class="box-content">
+            <p>
+                <?php echo $this->escapeHtml($this->getCustomer()->getName()) ?><br />
+                <?php echo $this->escapeHtml($this->getCustomer()->getEmail()) ?><br />
+                <a href="<?php echo $this->getChangePasswordUrl() ?>"><?php echo $this->__('Change Password') ?></a>
+            </p>
+        </div>
+    </div>
+</div>
+<?php if( $this->isNewsletterEnabled() ): ?>
+<div class="grid_5 omega">
+    <div class="box">
+        <div class="box-title">
+            <h3><?php echo $this->__('Newsletters') ?></h3>
+            <a href="<?php echo $this->getUrl('newsletter/manage') ?>"><i class="icon-pencil"></i></a>
+        </div>
+        <div class="box-content">
+            <p>
+                <?php if( $this->getIsSubscribed() ): ?>
+                    <?php echo $this->__("You are currently subscribed to 'General Subscription'.") ?>
+                <?php else: ?>
+                    <?php echo $this->__('You are currently not subscribed to any newsletter.') ?>
+                <?php endif; ?>
+            </p>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+<div class="clear"></div>

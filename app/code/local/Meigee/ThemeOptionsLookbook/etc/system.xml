@@ -1,0 +1,921 @@
+<config>
+	<tabs>
+        <meigee_tab translate="label" module="ThemeOptionsLookbook">
+            <label>Meigee / Theme Options</label>
+            <sort_order>1</sort_order>
+        </meigee_tab>
+    </tabs>
+    <sections>
+        <meigee_lookbook_general translate="label" module="ThemeOptionsLookbook">
+			<label>General Options</label>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <tab>meigee_tab</tab>
+            <groups>
+                <appearance translate="label">
+                    <label>Appearance</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<retina translate="label comment">
+                            <label>Retina Ready</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </retina>
+                        <font translate="label comment">
+                            <label>Font replacement</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>ThemeOptionsLookbook/fontreplacement</source_model>
+                            <comment>If choose disable option will be used standard font "Arial"</comment>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </font>
+                        <gfont translate="label comment">
+                            <label>Google Fonts</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>ThemeOptionsLookbook/gfont</source_model>
+                            <frontend_model>themeoptionslookbook/adminhtml_system_config_form_field_font</frontend_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <font>2</font>
+                            </depends>
+                        </gfont>
+                        <default_sizes translate="label comment">
+                            <label>Use Default Sizes</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Disable to set yours</comment>
+                            <depends>
+                                <font>2</font>
+                            </depends>
+                        </default_sizes>
+                        <fontsize translate="label comment">
+                            <label>Font Size</label>
+                            <frontend_type>Text</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Use pixels</comment>
+                            <depends>
+                                <font>2</font>
+                                <default_sizes>0</default_sizes>
+                            </depends>
+                        </fontsize>
+                        <lineheight translate="label comment">
+                            <label>Line Height</label>
+                            <frontend_type>Text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Use pixels</comment>
+                            <depends>
+                                <font>2</font>
+                                <default_sizes>0</default_sizes>
+                            </depends>
+                        </lineheight>
+                        <fontweight>
+                            <label>Font Weight</label>
+                            <frontend_type>Text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>200,300,400,500,600,700,800</comment>
+                            <depends>
+                                <font>2</font>
+                                <default_sizes>0</default_sizes>
+                            </depends>
+                        </fontweight>
+                        <patern translate="label">
+                            <label>Background Patern</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>ThemeOptionsLookbook/patern</source_model>
+                            <frontend_model>themeoptionslookbook/adminhtml_system_config_form_field_patern</frontend_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </patern>
+                        <custompatern>                      
+                            <label>...or upload your own one</label>
+                            <frontend_type>image</frontend_type>
+                            <comment>JPG,GIF,PNG</comment>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">images</upload_dir>
+                            <base_url type="media" scope_info="1">images</base_url>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>                                            
+                        </custompatern>
+                    </fields>
+                </appearance>
+				<layout translate="label">
+                    <label>Layout</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <responsiveness translate="label">
+                            <label>Responsive layout</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>ThemeOptionsLookbook/responsiveness</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </responsiveness>
+                        <sidebar translate="label">
+            				<label>Sidebar position</label>
+            				<frontend_type>Select</frontend_type>
+            				<source_model>ThemeOptionsLookbook/layout</source_model>
+            				<frontend_model>themeoptionslookbook/adminhtml_system_config_form_field_imagessmall</frontend_model>
+            				<sort_order>2</sort_order>
+            				<show_in_default>1</show_in_default>
+            				<show_in_website>1</show_in_website>
+            				<show_in_store>1</show_in_store>
+                        </sidebar>
+                        <grid translate="label">
+                            <label>Grid</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>ThemeOptionsLookbook/grid</source_model>
+                            <frontend_model>themeoptionslookbook/adminhtml_system_config_form_field_imagessmall</frontend_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </grid>
+                        <cartpage translate="label">
+                            <label>My cart page</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>ThemeOptionsLookbook/cartpage</source_model>
+                            <frontend_model>themeoptionslookbook/adminhtml_system_config_form_field_imagessmall</frontend_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cartpage>
+                    </fields>
+                </layout>
+				<customlogo translate="label">
+                    <label>Custom Logo</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>    
+                    <fields>
+                        <logo_status translate="label">
+                            <label>Logo status</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <comment>Disable it to use default logo</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </logo_status>
+                        <logo>                      
+                            <label>Upload your logo</label>
+                            <frontend_type>image</frontend_type>
+                            <comment>JPG,GIF,PNG</comment>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">images</upload_dir>
+                            <base_url type="media" scope_info="1">images</base_url>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store> 
+                            <depends><logo_status>1</logo_status></depends>                                           
+                        </logo>
+						<logo_retina>
+                            <label>Upload your retina ready logo</label>
+                            <frontend_type>image</frontend_type>
+                            <comment>JPG,GIF,PNG</comment>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">images</upload_dir>
+                            <base_url type="media" scope_info="1">images</base_url>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store> 
+                            <depends><logo_status>1</logo_status></depends>
+                        </logo_retina>
+                        <logo_alt>
+                            <label>Alternate text for logo</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store> 
+                            <depends><logo_status>1</logo_status></depends>                   
+                        </logo_alt>
+                    </fields>                   
+                </customlogo>
+                <menu translate="label">
+                    <label>Menu</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <!-- <type translate="label">
+                            <label>Menu Type</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>ThemeOptionsLookbook/menu</source_model>
+                            <frontend_model>themeoptionslookbook/adminhtml_system_config_form_field_imagessmall</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </type> -->
+                        <home translate="label">
+                            <label>Home Button</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </home>
+                        <menu_static translate="label">
+                            <label>Static Blocks In Header Navigation</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Comma separated list of static block identifiers. These static blocks will be displayed in header navigation.</comment>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </menu_static>
+                        <!-- <additional translate="label">
+                            <label>Additional Menu Content</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </additional>
+                        <cat_button translate="label">
+                            <label>Category Button</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <comment>Enable this option if you want to show up category button in category description in navigation</comment>
+                            <sort_order>5</sort_order>
+                            <depends>
+                                <additional>1</additional>
+                            </depends>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </cat_button> -->
+                    </fields>
+                </menu>
+                <lang_switcher translate="label">
+                    <label>Language Switcher</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Status</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>ThemeOptionsLookbook/languageswitcher</source_model>
+                            <frontend_model>themeoptionslookbook/adminhtml_system_config_form_field_imagessmall</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </status>
+                        <label translate="label">
+                            <label>Language label</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </label>
+                    </fields>
+                </lang_switcher>
+                <curr_switcher translate="label">
+                    <label>Currency Switcher</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>6</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Status</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>ThemeOptionsLookbook/currencyswitcher</source_model>
+                            <frontend_model>themeoptionslookbook/adminhtml_system_config_form_field_imagessmall</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </status>
+                        <label translate="label">
+                            <label>Currencies label</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </label>
+                    </fields>
+                </curr_switcher>
+                <fancybox translate="label">
+                    <label>Fancybox</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>7</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <fancybox_status translate="label">
+                            <label>Status</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </fancybox_status>
+                        <fancybox_home translate="label">
+                            <label>Homepage</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <fancybox_status>1</fancybox_status>
+                            </depends>
+                        </fancybox_home>
+                        <fancybox_listing translate="label">
+                            <label>Products Listing</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <fancybox_status>1</fancybox_status>
+                            </depends>
+                        </fancybox_listing>
+                    </fields>
+                </fancybox>
+				<rollover translate="label">
+                    <label>Product Hover Effect</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>8</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <rollover_status translate="label">
+                            <label>Status</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+							<comment>To use hover effect for a product set a label for needed image as "hover".</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </rollover_status>
+                    </fields>
+                </rollover>
+                <productlabels translate="label">
+                    <label>Product Labels</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>9</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <labelnew translate="label">
+                            <label>Label "New"</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </labelnew>
+                        <labelonsale translate="label">
+                            <label>Label "On Sale"</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </labelonsale>
+                    </fields>
+                </productlabels>
+                <otheroptions translate="label">
+                    <label>Other Options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <totop translate="label">
+                            <label>"To Top" Button</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </totop>
+                    </fields>
+                </otheroptions>
+		<loginajax translate="label">
+                    <label>Login Ajax</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>11</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Status</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+			    <comment>Enable or Disable Ajax Login in Header</comment>
+                        </status>
+                    </fields>
+                </loginajax>
+            </groups>
+        </meigee_lookbook_general>
+        <meigee_lookbook_design translate="label" module="ThemeOptionsLookbook">
+            <label>Theme Design</label>
+            <sort_order>2</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <tab>meigee_tab</tab>
+            <groups>
+                <base translate="label">
+                    <label>Base Colors</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <sitebg translate="label">
+                            <label>Site Background Color</label>
+                            <frontend_type>text</frontend_type>
+                            <backend_model>ThemeOptionsLookbook/cssgenerate</backend_model>
+                            <sort_order>1</sort_order>
+                            <comment>Click inside to change a color</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sitebg>
+                        <maincolor translate="label">
+                            <label>Main Color</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <comment>Click inside to change a color</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </maincolor>
+                        <secondcolor translate="label">
+                            <label>Second Color</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <comment>Click inside to change a color</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </secondcolor>
+                    </fields>
+                </base>
+            </groups>
+        </meigee_lookbook_design>
+        <meigee_lookbook_productpage translate="label" module="ThemeOptionsLookbook">
+            <label>Product Page</label>
+            <sort_order>3</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <tab>meigee_tab</tab>
+            <groups>
+                <productpage translate="label">
+                    <label>Product Page Options</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<pagelayout translate="label">
+                            <label>Product Page layout</label>
+                            <frontend_type>radios</frontend_type>
+                            <source_model>ThemeOptionsLookbook/productpagelayout</source_model>
+                            <frontend_model>themeoptionslookbook/adminhtml_system_config_form_field_imagessmall</frontend_model>
+                            <comment>Allows to choose layout for product page</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </pagelayout>
+                        <prevnext translate="label">
+                            <label>Prev and Next product buttons</label>
+                            <frontend_type>radios</frontend_type>
+                            <source_model>ThemeOptionsLookbook/prevnext</source_model>
+                            <frontend_model>themeoptionslookbook/adminhtml_system_config_form_field_imagessmall</frontend_model>
+                            <comment>Allows you to move between products within a category just in one click</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </prevnext>
+                        <moreviews translate="label">
+                            <label>More views block</label>
+                            <frontend_type>radios</frontend_type>
+                            <source_model>ThemeOptionsLookbook/moreviews</source_model>
+                            <frontend_model>themeoptionslookbook/adminhtml_system_config_form_field_imagessmall</frontend_model>
+                            <comment>Slider option will work if product has 4+ images</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </moreviews>
+                        <collateral translate="label">
+                            <label>Collateral block</label>
+                            <frontend_type>radios</frontend_type>
+                            <source_model>ThemeOptionsLookbook/collateral</source_model>
+                            <frontend_model>themeoptionslookbook/adminhtml_system_config_form_field_imagessmall</frontend_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </collateral>
+                        <collateral_related translate="label">
+                            <label>Related products block</label>
+                            <frontend_type>radios</frontend_type>
+                            <source_model>ThemeOptionsLookbook/related</source_model>
+                            <frontend_model>themeoptionslookbook/adminhtml_system_config_form_field_imagessmall</frontend_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </collateral_related>
+                    </fields>
+                </productpage>
+            </groups>
+        </meigee_lookbook_productpage>
+        <meigee_lookbook_sidebar translate="label" module="ThemeOptionsLookbook">
+            <label>Sidebar Blocks</label>
+            <sort_order>4</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <tab>meigee_tab</tab>
+            <groups>
+                <block_categories translate="label">
+                    <label>Categories</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Status</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </status>
+                        <option translate="label">
+                            <label>Display as accordion</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>ThemeOptionsLookbook/accordionoption</source_model>
+                            <depends>
+                                <status>1</status>
+                            </depends>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </option>
+                        <option_2 translate="label">
+                            <label>Closed by default</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <depends>
+                                <status>1</status>
+                                <option>1</option>
+                            </depends>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </option_2>
+                    </fields>
+                </block_categories>
+                <block_shop_by translate="label">
+                    <label>Shop By</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Status</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </status>
+                    </fields>
+                </block_shop_by>
+                <block_compare translate="label">
+                    <label>Compare Products</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Status</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </status>
+                    </fields>
+                </block_compare>
+                <block_compared translate="label">
+                    <label>Compared Products</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Status</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </status>
+                    </fields>
+                </block_compared>
+                <block_viewed translate="label">
+                    <label>Viewed Products</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Status</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </status>
+                    </fields>
+                </block_viewed>
+                <block_wishlist translate="label">
+                    <label>Wishlist</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>6</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Status</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </status>
+                        <option translate="label">
+                            <label>Display as slider</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <depends>
+                                <status>1</status>
+                            </depends>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </option>
+                    </fields>
+                </block_wishlist>
+                <block_tags translate="label">
+                    <label>Popular Tags</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>7</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Status</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </status>
+                    </fields>
+                </block_tags>
+                <block_orders translate="label">
+                    <label>My orders</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>8</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <status translate="label">
+                            <label>Status</label>
+                            <frontend_type>Select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </status>
+                    </fields>
+                </block_orders>
+            </groups>
+        </meigee_lookbook_sidebar>
+        <meigee_lookbook_headerslider translate="label" module="ThemeOptionsLookbook">
+            <label>Header Slider</label>
+            <sort_order>5</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <tab>meigee_tab</tab>
+            <groups>
+                <coin translate="label">
+                    <label>Slider Options</label>
+                    <comment><![CDATA[Full list of available options you can find <a target="_blank" href="http://www.iosscripts.com/iosslider/">there</a> <br/> You can add them manually by editing .phtml file - <em>app/design/frontend/lookbook/default/template/meigee/headerslider.phtml</em> ]]></comment>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>7</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label comment">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>                            
+                        </enabled>
+                        <slides translate="label">
+                            <label>Slides</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Comma separated list of static block identifiers. These static blocks will be displayed as slides.</comment>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </slides>
+                        <onlyhome translate="label">
+                            <label>Show only on the homepage</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Choose "No" to show slider on every page</comment>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </onlyhome>
+                        <autoSlide translate="label">
+                            <label>Auto Slide</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </autoSlide>
+                        <autoSlideTimer translate="label">
+                            <label>Auto Slide Timer</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </autoSlideTimer>
+                        <autoSlideTransTimer translate="label">
+                            <label>Auto Slide TransTimer</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </autoSlideTransTimer>
+                        <desktopClickDrag translate="label">
+                            <label>Desktop Click Drag</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </desktopClickDrag>
+                        <infiniteSlider translate="label">
+                            <label>Infinite Slider</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enabled>1</enabled>
+                            </depends>
+                        </infiniteSlider>
+                    </fields>
+                </coin>
+            </groups>
+        </meigee_lookbook_headerslider>
+    </sections>
+</config>

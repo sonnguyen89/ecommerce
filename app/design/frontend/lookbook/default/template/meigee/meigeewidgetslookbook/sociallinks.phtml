@@ -1,0 +1,14 @@
+<div class="social-block">
+	<h2>Follow us</h2>
+	<?php // Social Links
+	$html = $this->getSocialLinks();
+	echo '<ul class="social-links">';
+			if (!empty($html['twitter'])) echo '<li><a class="twitter" href="'.$html['twitter'].'"><i class="icon-twitter"></i></a></li>';
+			if (!empty($html['rss'])) echo '<li><a class="rss" href="'.$html['rss'].'"><i class="icon-rss"></i></a></li>';
+			if (!empty($html['facebook'])) echo '<li><a class="facebook" href="'.$html['facebook'].'"><i class="icon-facebook"></i></a></li>';
+			if (!empty($html['googleplus'])) echo '<li><a class="googleplus" href="'.$html['googleplus'].'"><i class="icon-google-plus"></i></a></li>';
+			if (!empty($html['linkedin'])) echo '<li><a class="linkedin" href="'.$html['linkedin'].'"><i class="icon-linkedin"></i></a></li>';
+			if (!empty($html['pinterest'])) echo '<li><a class="pinterest" href="'.$html['pinterest'].'"><i class="icon-pinterest"></i></a></li>';
+	echo '</ul>';
+	?>
+</div>

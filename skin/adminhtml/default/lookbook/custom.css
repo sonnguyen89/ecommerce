@@ -1,0 +1,189 @@
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_blank
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+select#meigee_theming_paterns_patern option[value="first_aid_kit"] {
+	background:url(images/paterns/first_aid_kit.png) 0 0 no-repeat;
+	width:20px;
+	height:20px;
+	padding: 0 0 0 0;
+	text-indent:-999em;
+	float: left;
+}
+select#meigee_theming_paterns_patern option[value="light_wool"] {
+	background:url(images/paterns/light_wool.png) 0 0 no-repeat;
+	width:20px;
+	height:20px;
+	padding: 0 0 0 0;
+	width:20px;
+	text-indent:-999em;
+	float: left;
+}
+
+/*********************************************************************/
+#meigee_general_appearance table,
+#meigee_general_layout table,
+#meigee_general_menu table,
+#meigee_general_customlogo table,
+#meigee_general_lang_switcher table,
+#meigee_general_curr_switcher table,
+#meigee_general_fancybox table,
+#meigee_general_rollover table,
+#meigee_general_otheroptions table,
+#meigee_productpage_productpage table,
+#meigee_sidebar_block_categories table,
+#meigee_sidebar_block_shop_by table,
+#meigee_sidebar_block_compare table,
+#meigee_sidebar_block_compared table,
+#meigee_sidebar_block_viewed table,
+#meigee_sidebar_block_wishlist table,
+#meigee_sidebar_block_tags table,
+#meigee_sidebar_block_orders table,
+#meigee_sidebar_block_subscribe table,
+#headerslider_coin table {
+	border-spacing:0 5px !important;
+}
+#meigee_general_appearance table td,
+#meigee_general_layout table td,
+#meigee_general_menu table td,
+#meigee_general_customlogo td,
+#meigee_general_lang_switcher table td,
+#meigee_general_curr_switcher table td,
+#meigee_general_fancybox table td,
+#meigee_general_rollover table td,
+#meigee_general_otheroptions table td,
+#meigee_productpage_productpage table td,
+#meigee_sidebar_block_categories table td,
+#meigee_sidebar_block_shop_by table td,
+#meigee_sidebar_block_compare table td,
+#meigee_sidebar_block_compared table td,
+#meigee_sidebar_block_viewed table td,
+#meigee_sidebar_block_wishlist table td,
+#meigee_sidebar_block_tags table td,
+#meigee_sidebar_block_orders table td,
+#meigee_sidebar_block_subscribe table td,
+#headerslider_coin table td { 
+	padding: 20px !important;
+}
+#meigee_general_appearance td.label,
+#meigee_general_layout td.label,
+#meigee_general_menu td.label,
+#meigee_general_customlogo td.label,
+#meigee_general_lang_switcher td.label,
+#meigee_general_curr_switcher td.label,
+#meigee_general_fancybox td.label,
+#meigee_general_rollover td.label,
+#meigee_general_otheroptions td.label,
+#meigee_productpage_productpage td.label,
+#meigee_sidebar_block_categories td.label,
+#meigee_sidebar_block_shop_by td.label,
+#meigee_sidebar_block_compare td.label,
+#meigee_sidebar_block_compared td.label,
+#meigee_sidebar_block_viewed td.label,
+#meigee_sidebar_block_wishlist td.label,
+#meigee_sidebar_block_tags td.label,
+#meigee_sidebar_block_orders td.label,
+#meigee_sidebar_block_subscribe td.label,
+#headerslider_coin td.label {
+	background: #f5f5f5 !important;
+	border:1px solid #ebebeb !important;
+	border-right:none !important;
+	font-weight:bold;
+}
+#meigee_general_appearance td.value,
+#meigee_general_layout td.value,
+#meigee_general_menu td.value,
+#meigee_general_customlogo td.value,
+#meigee_general_lang_switcher td.value,
+#meigee_general_curr_switcher td.value,
+#meigee_general_fancybox td.value,
+#meigee_general_rollover td.value,
+#meigee_general_otheroptions td.value,
+#meigee_productpage_productpage td.value,
+#meigee_sidebar_block_categories td.value,
+#meigee_sidebar_block_shop_by td.value,
+#meigee_sidebar_block_compare td.value,
+#meigee_sidebar_block_compared td.value,
+#meigee_sidebar_block_viewed td.value,
+#meigee_sidebar_block_wishlist td.value,
+#meigee_sidebar_block_tags td.value,
+#meigee_sidebar_block_orders td.value,
+#meigee_sidebar_block_subscribe td.value,
+#headerslider_coin td.value {
+	width:400px;
+	background: #f5f5f5 !important;
+	border:1px solid #ebebeb !important;
+	border-left:none !important;
+	border-right:none !important;
+}
+#meigee_general_appearance td.scope-label,
+#meigee_general_layout td.scope-label,
+#meigee_general_menu td.scope-label,
+#meigee_general_customlogo td.scope-label,
+#meigee_general_lang_switcher td.scope-label,
+#meigee_general_curr_switcher td.scope-label,
+#meigee_general_fancybox td.scope-label,
+#meigee_general_rollover td.scope-label,
+#meigee_general_otheroptions td.scope-label,
+#meigee_productpage_productpage td.scope-label,
+#meigee_sidebar_block_categories td.scope-label,
+#meigee_sidebar_block_shop_by td.scope-label,
+#meigee_sidebar_block_compare td.scope-label,
+#meigee_sidebar_block_compared td.scope-label,
+#meigee_sidebar_block_viewed td.scope-label,
+#meigee_sidebar_block_wishlist td.scope-label,
+#meigee_sidebar_block_tags td.scope-label,
+#meigee_sidebar_block_orders td.scope-label,
+#meigee_sidebar_block_subscribe td.scope-label,
+#headerslider_coin td.scope-label {
+	background: #f5f5f5 !important;
+	border:1px solid #ebebeb !important;
+	border-left:none !important;
+}
+
+/***********************************************************************/
+
+.meigee-thumb { 
+}
+.meigee-radio {
+	margin-right:10px; 
+	margin-bottom:10px; 
+}
+
+/* Sidebars */
+.sidebars-row {
+	overflow: hidden;
+}
+/**/
+
+/* Background Paterns */
+.paterns-row {
+	height:365px;
+	overflow: auto;
+}
+.paterns-row .meigee-thumb { 
+	width:54px; 
+	height:54px;
+}
+/**/

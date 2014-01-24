@@ -1,0 +1,232 @@
+<style>
+<!--
+body.ajax-index-options{
+ width:380px;
+ padding:0px;
+ margin:0px;
+}
+body.ajax-index-options .product-shop .product-options-bottom .price-box{
+ float:left;
+}
+-->
+</style>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div class="container_12">
+	<div class="product-view">
+		<div class="product-essential">
+		<form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+			<div class="no-display">
+				<input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+				<input type="hidden" name="related_product" id="related-products-field" value="" />
+			</div>
+			<div class="alpha grid_4 product-img-box">
+			   <?php echo $this->getChildHtml('media'); ?>
+			</div>
+			<div class="grid_5 omega product-shop">
+				<div class="product-name">
+					<h2><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
+				</div>
+				<?php if ($_product->getShortDescription()):?>
+					<div class="short-description">
+						<div class="std"><h2><?php echo $this->__('Details:') ?></h2><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+					</div>
+				<?php endif;?>
+				
+				<?php if($_product->getTypeId() != 'bundle'): ?>
+					<?php
+						$keywords = array('price-excluding-tax', 'price-including-tax', 'map-info', 'grouped-items-table');
+						$exeption_flag = false;
+						$pricestring = $this->getChildHtml('product_type_data');
+						$isKeyAvaliable = false;
+						foreach($keywords as $word){
+							if(strpos($pricestring, $word)){
+								$isKeyAvaliable = true;
+							}
+						}
+						if($_product->isConfigurable()){$isKeyAvaliable = true;}
+					?>
+					<?php if($isKeyAvaliable == false): ?>
+					<div class="price-button-box">
+					<?php endif; ?>
+						<?php if(!$_product->isConfigurable()): ?>
+							<?php echo $this->getChildHtml('product_type_data'); ?>
+						<?php endif; ?>
+						<?php if (!$this->hasOptions()):?>
+						<div class="product-type-block">
+							<div class="add-to-box">
+							   <?php if($_product->isSaleable()): ?>
+								   <?php echo $this->getChildHtml('addtocart') ?>
+							   <?php endif; ?>
+							</div>
+							<?php echo $this->getChildHtml('extra_buttons') ?>
+						</div>
+						<?php endif; ?>
+					
+					<?php if($isKeyAvaliable == false): ?>
+					</div>
+					<?php endif; ?>
+				<?php endif; ?>
+				
+				<?php echo $this->getChildHtml('addto') ?>
+				
+				<?php if ($_product->isSaleable() && $this->hasOptions()):?>
+					<?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+				<?php endif;?>
+				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('likes')->toHtml() ?>
+			</div>
+			<div class="clear"></div>
+			<?php if ($_product->isSaleable() && $this->hasOptions()):?>
+				<?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+			<?php endif;?>
+		</form>
+		<script type="text/javascript">
+		//<![CDATA[
+			var productAddToCartForm = new VarienForm('product_addtocart_form');
+			productAddToCartForm.submit = function(button, url) {
+			if (this.validator.validate()) {
+				var form = this.form;
+				var oldUrl = form.action;
+				if (url) {
+					form.action = url;
+				}
+				var e = null;
+				// Start of our new ajax code
+				if (!url) {
+					url = jQuery('#product_addtocart_form').attr('action');
+				}
+				url = url.replace("checkout/cart","ajax/index"); // New Code
+				var data = jQuery('#product_addtocart_form').serialize();
+				data += '&isAjax=1';
+				jQuery('#ajax_loader').show();
+				try {
+					jQuery.ajax( {
+						url : url,
+						dataType : 'json',
+						type : 'post',
+						data : data,
+						success : function(data) {
+							jQuery('#ajax_loader').hide();
+							parent.setAjaxData(data,true);
+						}
+					});
+				} catch (e) {
+				}
+				// End of our new ajax code
+				this.form.action = oldUrl;
+				if (e) {
+					throw e;
+				}
+			}
+		}.bind(productAddToCartForm);
+		productAddToCartForm.submitLight = function(button, url){
+				if(this.validator) {
+					var nv = Validation.methods;
+					delete Validation.methods['required-entry'];
+					delete Validation.methods['validate-one-required'];
+					delete Validation.methods['validate-one-required-by-name'];
+					if (this.validator.validate()) {
+						if (url) {
+							this.form.action = url;
+						}
+						this.form.submit();
+					}
+					Object.extend(Validation.methods, nv);
+				}
+			}.bind(productAddToCartForm);
+		//]]>
+		
+		</script>
+		<style type="text/css">
+			body{width:auto!important;}
+			
+			@media only screen and (max-width: 384px){
+				.ajax-index-options .container_12 {
+					margin: 0;
+					width: auto;
+				}
+				
+				.ajax-index-options .container_12 .grid_5{
+					float:none;
+					margin:0;
+					width:100%;
+				}
+				.ajax-index-options .container_12 .grid_4.product-img-box .product-image .img-holder{padding-right:15px;}
+				
+				.ajax-index-options .product-view .product-name {
+					padding-right:24px;
+				}
+				
+				
+				.ajax-index-options .product-view .more-views #more-views-slider li a{
+					margin-right:7px;
+					width:48px;
+				}
+				
+				
+				.ajax-index-options .more-views .prev{
+					left:15px;
+				}
+				.ajax-index-options .more-views .next{
+					right:17px;
+				}
+				.ajax-index-options .product-view .product-shop .product-options-bottom .price-box{margin-bottom: 0.33em !important;}
+				.ajax-index-options .product-view .product-shop .product-options-bottom button{margin-left:5px;}
+				.ajax-index-options .product-view .product-shop .product-options-bottom .add-to-cart #ajax_loader{
+					float: left;
+					left: 9px;
+					margin: 0;
+					right: auto;
+					top: 12px;
+					clear:none;
+				}
+				.ajax-index-options .product-view .product-options,
+				.ajax-index-options .product-view .product-options-bottom{margin-right:10px!important;}
+				
+				.ajax-index-options .product-view .product-shop .product-options-bottom .price-box{float:none;}
+				
+			} 
+			
+			@media only screen and (min-width: 385px) and (max-width: 580px){
+				.ajax-index-options .container_12 {
+					margin: 0;
+					width: auto;
+				}
+				.ajax-index-options .container_12 .grid_4.product-img-box{
+					width:45%;
+					float:left;
+					margin:0;
+				}
+				.ajax-index-options .container_12 .grid_5{
+					float:right;
+					width:50%;
+					margin:0;
+				}
+				.ajax-index-options .product-view .more-views #more-views-slider li a{
+					margin-right:7px;
+					width:47px;
+				}
+				.ajax-index-options .more-views .prev{
+					left:15px;
+				}
+				.ajax-index-options .more-views .next{
+					right:17px;
+				}
+				
+				.ajax-index-options .product-view .product-shop .add-to-cart button{
+					margin-left: 0;
+				}
+				
+				.ajax-index-options .product-view .product-shop .add-to-cart input.quantity-increase{margin-right:17px; margin-bottom:1em;}
+				
+				.ajax-index-options .product-view .product-shop .product-options,
+				.ajax-index-options .product-view .product-shop .product-options-bottom{margin-right:10px!important;}
+			}
+			
+		</style>
+		</div>
+	</div>
+</div>

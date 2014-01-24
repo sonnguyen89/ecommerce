@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+
+-->
+<layout version="0.1.0">
+
+<!--
+Default layout, loads most of the pages
+-->
+
+    <default>
+
+        <!-- Mage_Poll -->
+        <reference name="sidebar">
+            <block type="poll/activePoll" name="sidebar.poll">
+                <action method="setPollTemplate"><template>poll/active.phtml</template><type>poll</type></action>
+                <action method="setPollTemplate"><template>poll/result.phtml</template><type>results</type></action>
+            </block>
+        </reference>
+
+    </default>
+
+<!--
+Customer account home dashboard layout
+-->
+
+    <customer_account_index>
+        <reference name="sidebar">
+            <action method="unsetChild"><name>sidebar.poll</name></action>
+        </reference>
+    </customer_account_index>
+
+</layout>

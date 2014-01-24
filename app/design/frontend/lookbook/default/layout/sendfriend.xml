@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+-->
+<layout version="0.1.0">
+    <sendfriend_product_send translate="label">
+        <label>Catalog Product Email to a Friend</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs"><script>varien/product.js</script></action>
+        </reference>
+        <reference name="content">
+            <block type="sendfriend/send" name="sendfriend.send" template="sendfriend/send.phtml" />
+        </reference>
+    </sendfriend_product_send>
+</layout>

@@ -1,0 +1,180 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+?>
+<?php 
+/*****/
+$appearance = MAGE::helper('ThemeOptionsLookbook')->getThemeOptionsLookbook('appearance');
+$toTop = Mage::getStoreConfig('meigee_lookbook_general/otheroptions/totop');
+/*****/
+?>
+<?php echo MAGE::helper('ThemeOptionsLookbook')->getThemeOptionsLookbook('user-scalable'); ?>
+<meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+<title><?php echo $this->getTitle() ?></title>
+<meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+<meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
+<link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<!--[if lt IE 7]>
+<script type="text/javascript">
+//<![CDATA[
+    var BLANK_URL = '<?php echo $this->helper('core/js')->getJsUrl('blank.html') ?>';
+    var BLANK_IMG = '<?php echo $this->helper('core/js')->getJsUrl('spacer.gif') ?>';
+//]]>
+</script>
+<![endif]-->
+
+<!-- Font Replacement -->
+<?php if ($appearance['font'] == 2): ?>
+<link href='http://fonts.googleapis.com/css?family=<?php echo str_replace(' ', '+', $appearance['gfont']); ?>:200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+<?php endif; ?>
+<!-- End Font Replacement -->
+
+<?php echo $this->getCssJsHtml() ?>
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php echo $this->getIncludes() ?>
+
+<?php if ($toTop): ?>
+	<script type="text/javascript">
+		jQuery(window).load(function() {
+			if(!((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i)) || (navigator.userAgent.match(/Android/i)))){
+				jQuery().UItoTop({
+					text: "<?php echo $this->__(''); ?>"
+				});
+			}
+		});
+	</script>
+<?php endif; ?>
+
+<!-- Font Replacement -->
+<?php if ($appearance['font'] == 2): ?>
+<?php if ($appearance['default_sizes'] == 0): ?>
+<style>
+#checkout-review-submit #review-buttons-container button.btn-checkout span span,
+#onepagecheckout_forgotbox.op_login_area button.button span span,
+#onepagecheckout_loginbox.op_login_area button.button span span,
+#onepagecheckout_forgotbox .page-title span,
+#onepagecheckout_loginbox .page-title span,
+.ajax-index-options .product-view .price-button-box .add-to-cart .qty-block input#qty,
+#checkout-review-submit #review-buttons-container button.btn-checkout,
+#onepagecheckout_orderform .col3-set.onepagecheckout_datafields .op_block_title,
+#login-holder form h2,
+#login-holder .page-title .link-box, 
+.widget-box > h2,
+header#header .menu-button span,
+#checkout-step-login h3,
+.opc .step-title h2,
+.opc .step-title .number,
+.dashboard .box-info .box-title h3,
+.dashboard .box-title h2,
+.dashboard .box-head h2,
+.dashboard .welcome-msg .hello,
+.account-login .new-users h2,
+.account-login .registered-users h2,
+.my-wishlist .wishlist-input-box .cart-label,
+#cart-accordion h3.accordion-title span,
+.cart .totals h2,
+.cart .discount h2,
+.cart .shipping h2,
+.cart .crosssell h2,
+.cart-table .quantity-box .cart-label,
+.product-collateral h2,
+.block-related header h2,
+.section.tabs .tabs li,
+.review-title h2,
+.meigee-tabs a,
+.product-options h3,
+.add-to-cart label,
+.product-view .product-shop .short-description h2,
+.product-view .product-shop .product-name h2,
+.products-list .price-box.map-info a,
+.price-button-box .price-block .price-details,
+.price-button-box .price-block label,
+.price-button-box .price-box,
+.products-list .desc h3,
+span.label-new,
+span.label-sale,
+.page-title h1,
+.page-title h2,
+aside.sidebar .actions a span,
+aside.sidebar section header h2,
+#footer .custom_footer .text-block h4,
+#footer .custom_footer h3,
+.social-block h2,
+#footer .block-subscribe .title-box h3,
+#nav > li > a,
+header#header .top-cart .block-content .actions a,
+header#header .top-cart .block-content .subtotal span,
+button.button span span,
+.product-name a{font-family: '<?php echo $appearance['gfont']; ?>', sans-serif; font-size:<?php echo $appearance['fontsize']; ?>px !important; line-height: <?php echo $appearance['fontsize']; ?>px !important; font-weight: <?php echo $appearance['fontweight']; ?> !important;}
+</style>
+<?php else: ?>
+<style>
+#checkout-review-submit #review-buttons-container button.btn-checkout span span,
+#onepagecheckout_forgotbox.op_login_area button.button span span,
+#onepagecheckout_loginbox.op_login_area button.button span span,
+#onepagecheckout_forgotbox .page-title span,
+#onepagecheckout_loginbox .page-title span,
+.ajax-index-options .product-view .price-button-box .add-to-cart .qty-block input#qty,
+#checkout-review-submit #review-buttons-container button.btn-checkout,
+#onepagecheckout_orderform .col3-set.onepagecheckout_datafields .op_block_title,
+#login-holder form h2,
+#login-holder .page-title .link-box, 
+.widget-box > h2,
+header#header .menu-button span,
+#checkout-step-login h3,
+.opc .step-title h2,
+.opc .step-title .number,
+.dashboard .box-info .box-title h3,
+.dashboard .box-title h2,
+.dashboard .box-head h2,
+.dashboard .welcome-msg .hello,
+.account-login .new-users h2,
+.account-login .registered-users h2,
+.my-wishlist .wishlist-input-box .cart-label,
+#cart-accordion h3.accordion-title span,
+.cart .totals h2,
+.cart .discount h2,
+.cart .shipping h2,
+.cart .crosssell h2,
+.cart-table .quantity-box .cart-label,
+.product-collateral h2,
+.block-related header h2,
+.section.tabs .tabs li,
+.review-title h2,
+.meigee-tabs a,
+.product-options h3,
+.add-to-cart label,
+.product-view .product-shop .short-description h2,
+.product-view .product-shop .product-name h2,
+.products-list .price-box.map-info a,
+.price-button-box .price-block .price-details,
+.price-button-box .price-block label,
+.price-button-box .price-box,
+.products-list .desc h3,
+span.label-new,
+span.label-sale,
+.page-title h1,
+.page-title h2,
+aside.sidebar .actions a span,
+aside.sidebar section header h2,
+#footer .custom_footer .text-block h4,
+#footer .custom_footer h3,
+.social-block h2,
+#footer .block-subscribe .title-box h3,
+#nav > li > a,
+header#header .top-cart .block-content .actions a,
+header#header .top-cart .block-content .subtotal span,
+button.button span span,
+.product-name a{font-family: '<?php echo $appearance['gfont']; ?>', sans-serif;}
+</style>
+<?php endif; ?>
+<?php endif; ?>
+<!-- End Font Replacement -->

@@ -1,0 +1,30 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+?>
+<?php if(isset($poll)) : ?>
+<section class="block-poll">
+    <header>
+        <h2><?php echo $this->__('Community Poll') ?></h2>
+    </header>
+    <div class="block-content">
+        <p class="block-subtitle"><?php echo $this->escapeHtml($poll->getPollTitle()); ?></p>
+        <?php if( $poll_answers ): ?>
+        <ol id="poll-answers">
+            <?php foreach( $poll_answers as $answer ): ?>
+                <li>
+                    <span class="answer"><span><?php echo $this->escapeHtml($answer->getAnswerTitle()) ?>:</span></span>
+                    <span class="votes"><?php echo $answer->getVotesCount() ?> (<?php echo $answer->getPercent() ?>%)</span>                    
+                </li>
+            <?php endforeach; ?>
+        </ol>
+        <script type="text/javascript">decorateList('poll-answers');</script>
+        <?php endif; ?>
+    </div>
+</section>
+<?php endif; ?>

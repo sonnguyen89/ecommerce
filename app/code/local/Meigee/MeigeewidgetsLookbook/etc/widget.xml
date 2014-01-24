@@ -1,0 +1,440 @@
+<?xml version="1.0" ?>
+<widgets>
+    <featuredcategory_extended type="meigeewidgetslookbook/featuredcategory">
+        <name>Meigee/Featured Category Extended</name>
+        <description type="desc">Adds a list of products from featured category with advanced parameters</description>
+        <parameters>
+            <featured_category>
+                <visible>1</visible>
+                <label>Featured Category</label>
+                <required>1</required>
+                <type>label</type>
+                <helper_block>
+                    <type>adminhtml/catalog_category_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Category...</open>
+                        </button>
+                    </data>
+                </helper_block>
+            </featured_category>
+            <template translate="label">
+                <label>Frontend Template</label>
+		<description>If chosen slider make sure you have at least 5 products to display, otherwise widget won't be displayed.</description>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>meigeewidgetslookbook/templates</source_model>
+            </template>			
+            <products_amount>
+                <label>Amount of Products to Display</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>10</value>
+            </products_amount>
+	    <visible_products>
+                <label>Amount of Visible Products</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>meigeewidgetslookbook/visible</source_model>
+		<value>4</value>
+		<depends>
+                    <template>
+                        <value>meigee/meigeewidgetslookbook/slider.phtml</value>
+                    </template>					
+                </depends>
+            </visible_products>
+            <!--<column_count>
+                <label>Columns count</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>3</value>
+                <depends>
+                    <template><value>meigee/meigeewidgetslookbook/grid.phtml</value></template>
+                </depends>
+            </column_count>-->
+            <autoSlide translate="label">
+                <label>Auto Slide</label>
+                <description>Enables automatic cycling through slides</description>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>0</value>
+                <depends>
+                    <template>
+                        <value>meigee/meigeewidgetslookbook/slider.phtml</value>
+                    </template>
+                </depends>
+            </autoSlide>
+            <autoSlideTimer translate="label">
+                <label>Auto Slide Timer</label>
+                <description>The time (in milliseconds) that a slide will wait before automatically navigating to the next slide</description>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <depends>
+                    <template>
+                        <value>meigee/meigeewidgetslookbook/slider.phtml</value>
+                    </template>
+                    <autoSlide>
+                        <value>1</value>
+                    </autoSlide>
+                </depends>
+            </autoSlideTimer>
+            <autoSlideTransTimer translate="label">
+                <label>Auto Slide Trans Timer</label>
+                <description>The time (in milliseconds) required for all automatic animations to move between slides</description>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <depends>
+                    <template>
+                        <value>meigee/meigeewidgetslookbook/slider.phtml</value>
+                    </template>
+                    <autoSlide>
+                        <value>1</value>
+                    </autoSlide>
+                </depends>
+            </autoSlideTransTimer>
+			<widget_id translate="label">
+                <label>Widget ID</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>meigeewidgetslookbook/number</source_model>
+                <depends>
+                    <template>
+                        <value>meigee/meigeewidgetslookbook/slider.phtml</value>
+                    </template>
+                </depends>
+                <description>Generated automatically</description>
+            </widget_id>
+            <cache_lifetime translate="label description">
+                <label>Cache Lifetime (Seconds)</label>
+                <description>86400 by default, if not set. To refresh instantly, Clear the Blocks HTML Output Cache.</description>
+                <visible>1</visible>
+                <type>text</type>
+            </cache_lifetime>
+        </parameters>
+    </featuredcategory_extended>
+    <newproducts_extended type="meigeewidgetslookbook/newproducts">
+        <name>Meigee/New Products Extended</name>
+        <description type="desc">Adds a list of new products with advanced parameters</description>
+        <parameters>
+            <template translate="label">
+                <label>Frontend Template</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>meigeewidgetslookbook/templates</source_model>
+            </template>
+            <products_amount>
+                <label>Amount of Products to Display</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>10</value>
+            </products_amount>
+	    <visible_products>
+                <label>Amount of Visible Products</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>meigeewidgetslookbook/visible</source_model>
+		<value>4</value>
+		<depends>
+                    <template>
+                        <value>meigee/meigeewidgetslookbook/slider.phtml</value>
+                    </template>
+                </depends>
+            </visible_products>
+            <!-- <column_count>
+                <label>Columns count</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>3</value>
+                <depends>
+                    <template><value>meigee/meigeewidgetslookbook/grid.phtml</value></template>
+                </depends>
+            </column_count> -->
+            <autoSlide translate="label">
+                <label>Auto Slide</label>
+                <description>Enables automatic cycling through slides</description>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>0</value>
+                <depends>
+                    <template>
+                        <value>meigee/meigeewidgetslookbook/slider.phtml</value>
+                    </template>
+                </depends>
+            </autoSlide>
+            <autoSlideTimer translate="label">
+                <label>Auto Slide Timer</label>
+                <description>The time (in milliseconds) that a slide will wait before automatically navigating to the next slide</description>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <depends>
+                    <template>
+                        <value>meigee/meigeewidgetslookbook/slider.phtml</value>
+                    </template>
+                    <autoSlide>
+                        <value>1</value>
+                    </autoSlide>
+                </depends>
+            </autoSlideTimer>
+            <autoSlideTransTimer translate="label">
+                <label>Auto Slide Trans Timer</label>
+                <description>The time (in milliseconds) required for all automatic animations to move between slides</description>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <depends>
+                    <template>
+                        <value>meigee/meigeewidgetslookbook/slider.phtml</value>
+                    </template>
+                    <autoSlide>
+                        <value>1</value>
+                    </autoSlide>
+                </depends>
+            </autoSlideTransTimer>
+		<widget_id translate="label">
+                <label>Widget ID</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>meigeewidgetslookbook/number</source_model>
+                <depends>
+                    <template>
+                        <value>meigee/meigeewidgetslookbook/slider.phtml</value>
+                    </template>
+                </depends>
+                <description>Generated automatically</description>
+            </widget_id>
+            <cache_lifetime translate="label description">
+                <label>Cache Lifetime (Seconds)</label>
+                <description>86400 by default, if not set. To refresh instantly, Clear the Blocks HTML Output Cache.</description>
+                <visible>1</visible>
+                <type>text</type>
+            </cache_lifetime>
+        </parameters>
+    </newproducts_extended>
+    <saleproducts_extended type="meigeewidgetslookbook/saleproducts">
+        <name>Meigee/On Sale Products Extended</name>
+        <description type="desc">Adds a list of on sale products with advanced parameters</description>
+        <parameters>
+            <template translate="label">
+                <label>Frontend Template</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>meigeewidgetslookbook/templates</source_model>
+            </template>
+            <products_amount>
+                <label>Amount of Products to Display</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>10</value>
+            </products_amount>
+	    <visible_products>
+                <label>Amount of Visible Products</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>meigeewidgetslookbook/visible</source_model>
+		<value>4</value>
+		<depends>
+                    <template>
+                        <value>meigee/meigeewidgetslookbook/slider.phtml</value>
+                    </template>
+                </depends>
+            </visible_products>
+            <!-- <column_count>
+                <label>Columns count</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value>3</value>
+                <depends>
+                    <template><value>meigee/meigeewidgetslookbook/grid.phtml</value></template>
+                </depends>
+            </column_count> -->
+            <autoSlide translate="label">
+                <label>Auto Slide</label>
+                <description>Enables automatic cycling through slides</description>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <value>0</value>
+                <depends>
+                    <template>
+                        <value>meigee/meigeewidgetslookbook/slider.phtml</value>
+                    </template>
+                </depends>
+            </autoSlide>
+            <autoSlideTimer translate="label">
+                <label>Auto Slide Timer</label>
+                <description>The time (in milliseconds) that a slide will wait before automatically navigating to the next slide</description>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <depends>
+                    <template>
+                        <value>meigee/meigeewidgetslookbook/slider.phtml</value>
+                    </template>
+                    <autoSlide>
+                        <value>1</value>
+                    </autoSlide>
+                </depends>
+            </autoSlideTimer>
+            <autoSlideTransTimer translate="label">
+                <label>Auto Slide Trans Timer</label>
+                <description>The time (in milliseconds) required for all automatic animations to move between slides</description>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <depends>
+                    <template>
+                        <value>meigee/meigeewidgetslookbook/slider.phtml</value>
+                    </template>
+                    <autoSlide>
+                        <value>1</value>
+                    </autoSlide>
+                </depends>
+            </autoSlideTransTimer>
+            <widget_id translate="label">
+                <label>Widget ID</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>meigeewidgetslookbook/number</source_model>
+                <depends>
+                    <template>
+                        <value>meigee/meigeewidgetslookbook/slider.phtml</value>
+                    </template>
+                </depends>
+                <description>Generated automatically</description>
+            </widget_id>
+            <cache_lifetime translate="label description">
+                <label>Cache Lifetime (Seconds)</label>
+                <description>86400 by default, if not set. To refresh instantly, Clear the Blocks HTML Output Cache.</description>
+                <visible>1</visible>
+                <type>text</type>
+            </cache_lifetime>
+        </parameters>
+    </saleproducts_extended>
+    <social_links type="meigeewidgetslookbook/sociallinks">
+        <name>Meigee/Social links widget</name>
+        <description type="desc">Adds social links to any pages or static blocks</description>
+        <parameters>
+            <twitter>
+                <label>Twitter</label>
+                <type>text</type>
+                <visible>1</visible>
+                <sort_order>1</sort_order>
+                <description>Example: http://twitter.com (Leave empty to hide)</description>
+            </twitter>
+            <rss translate="label">
+                <label>RSS</label>
+                <type>text</type>
+                <visible>1</visible>
+                <sort_order>2</sort_order>
+                <description>Example: http://rss.com (Leave empty to hide)</description>
+            </rss>
+            <facebook translate="label">
+                <label>Facebook</label>
+                <type>text</type>
+                <visible>1</visible>
+                <sort_order>3</sort_order>
+                <description>Example: http://facebook.com (Leave empty to hide)</description>
+            </facebook>
+            <googleplus translate="label">
+                <label>Google +</label>
+                <type>text</type>
+                <visible>1</visible>
+                <sort_order>4</sort_order>
+                <description>Example: https://plus.google.com/ (Leave empty to hide)</description>
+            </googleplus>
+            <linkedin translate="label">
+                <label>Linkedin</label>
+                <type>text</type>
+                <visible>1</visible>
+                <sort_order>5</sort_order>
+                <description>Example: http://linkedin.com (Leave empty to hide)</description>
+            </linkedin>
+	    <pinterest translate="label">
+                <label>Pinterest</label>
+                <type>text</type>
+                <visible>1</visible>
+                <sort_order>6</sort_order>
+                <description>Example: http://pinterest.com/ (Leave empty to hide)</description>
+            </pinterest>
+
+            <template translate="label">
+                <label>Frontend Template</label>
+                <visible>0</visible>
+                <required>1</required>
+                <type>select</type>
+                <value>meigee/meigeewidgetslookbook/sociallinks.phtml</value>
+            </template>
+            <cache_lifetime translate="label description">
+                <label>Cache Lifetime (Seconds)</label>
+                <description>86400 by default, if not set. To refresh instantly, Clear the Blocks HTML Output Cache.</description>
+                <visible>1</visible>
+                <type>text</type>
+            </cache_lifetime>
+        </parameters>
+    </social_links>
+    <latest_tweets type="meigeewidgetslookbook/tweets">
+        <name>Meigee/Latest Tweets</name>
+        <description type="desc">Adds a list of your latest tweets</description>
+        <parameters>
+            <template translate="label">
+                <label>Frontend Template</label>
+                <visible>0</visible>
+                <required>1</required>
+                <type>select</type>
+                <value>meigee/meigeewidgetslookbook/tweets.phtml</value>
+            </template>
+            <twitter_username>
+                <label>Twitter Username</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <value></value>
+            </twitter_username>
+            <twitter_widget_id>
+                <label>Twitter Widget ID</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <description><![CDATA[You can find it on your twitter widget settings page]]></description>
+                <value></value>
+            </twitter_widget_id>
+            <tweet_limit>
+                <label>Tweet limit</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>text</type>
+                <description>A preset number of Tweets. Value may be set between 1 and 20</description>
+                <value>2</value>
+            </tweet_limit>
+            <cache_lifetime translate="label description">
+                <label>Cache Lifetime (Seconds)</label>
+                <description>86400 by default, if not set. To refresh instantly, Clear the Blocks HTML Output Cache.</description>
+                <visible>1</visible>
+                <type>text</type>
+            </cache_lifetime>
+        </parameters>
+    </latest_tweets>
+</widgets>

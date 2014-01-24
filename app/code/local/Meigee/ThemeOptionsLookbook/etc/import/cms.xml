@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<root>
+    <cms>
+        <pages>
+            <item>
+                <title>Home Page</title>
+                <identifier>home</identifier>
+                <content><![CDATA[<div class="widget-box">
+					<h2>New products</h2>
+					{{widget type="meigeewidgetslookbook/newproducts" template="meigee/meigeewidgetslookbook/slider.phtml" products_amount="10" visible_products="6" autoSlide="1" autoSlideTimer="6000" autoSlideTransTimer="800" widget_id="7815"}}
+				</div>
+				<div class="widget-box">
+					<h2>On sale products</h2>
+					{{widget type="meigeewidgetslookbook/saleproducts" template="meigee/meigeewidgetslookbook/slider.phtml" products_amount="10" visible_products="6" autoSlide="1" autoSlideTimer="7000" autoSlideTransTimer="700" widget_id="2727"}}
+				</div>]]></content>
+                <is_active>1</is_active>
+                <sort_order>0</sort_order>
+                <stores>
+                    <item>0</item>
+                </stores>
+                <root_template>one_column</root_template>
+            </item>
+        </pages>
+        <blocks>
+            <item>
+                <title>Lookbook Custom Footer</title>
+                <identifier>lookbook_custom_footer</identifier>
+                <content><![CDATA[<div class="grid_3 text-block">
+						<h3>About us</h3>
+						<a href="#"><img src="{{media url="wysiwyg/qr_code.jpg"}}" data-srcX2="{{media url="wysiwyg/qr_code@x2.jpg"}}" alt="" /></a>
+						<h4>Check responsibility of this template</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sagittis lobortis libero commodo ultricies. Cum ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sagittis lobortis libero commodo ultricies.</p>
+					</div>
+					<div class="grid_3 timetable">
+						<h3>Business hours</h3>
+						<p>Our support Hotline is available 24 Hours a day 7 days a week: (555) 343 456 7891</p>
+						<ul>
+							<li><div>Monday-Friday:</div><span>9:00 to 17:00</span></li>
+							<li><div>Saturday:</div><span>9:00 to 16:00</span></li>
+							<li><div>Sunday:</div><span>Closed</span></li>
+						</ul>
+					</div>
+					<div class="grid_3">
+						<h3>Accessories</h3>
+						<ul>
+							<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+							<li><a href="#">Consectetur adipiscing elit</a></li>
+							<li><a href="#">Suspendisse</a></li>
+							<li><a href="#">Sagittis lobortis libero commodo</a></li>
+							<li class="last"><a href="#">Consectetur adipiscing elit</a></li>
+						</ul>
+					</div>
+					<div class="grid_3 last">
+						<h3>Help</h3>
+						<ul>
+							<li><a href="#">Lorem ipsum dolor sit amet</a></li>
+							<li><a href="#">Consectetur adipiscing elit</a></li>
+							<li><a href="#">Suspendisse</a></li>
+							<li><a href="#">Sagittis lobortis libero commodo</a></li>
+							<li class="last"><a href="#">Consectetur adipiscing elit</a></li>
+						</ul>
+					</div>]]></content>
+                <is_active>1</is_active>
+                <stores>
+                    <item>0</item>
+                </stores>
+            </item>
+			<item>
+                <title>Lookbook Listing Likes</title>
+                <identifier>lookbook_listing_likes</identifier>
+                <content><![CDATA[<div class="like-box">
+					<div class="left">
+						<div id="fb-root"></div>
+						<script>
+						(function(d, s, id) {
+						  var js, fjs = d.getElementsByTagName(s)[0];
+						  if (d.getElementById(id)) return;
+						  js = d.createElement(s); js.id = id;
+						  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+						  fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));
+						</script>
+						<div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+						<a href="https://twitter.com/share" class="twitter-share-button" data-via="meigeeteam">Tweet</a>
+						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+					</div>
+					<div class="left gplus">
+						<!-- Place this tag where you want the +1 button to render. -->
+						<div class="g-plusone" data-size="medium"></div>
+						<!-- Place this tag after the last +1 button tag. -->
+						<script type="text/javascript">
+						  (function() {
+							var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+							po.src = 'https://apis.google.com/js/plusone.js';
+							var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+						  })();
+						</script>
+					</div>
+					<div class="clear"></div>
+				</div>]]></content>
+                <is_active>1</is_active>
+                <stores>
+                    <item>0</item>
+                </stores>
+            </item>
+			<item>
+                <title>Lookbook Product Likes</title>
+                <identifier>lookbook_product_likes</identifier>
+                <content><![CDATA[<div class="like-box">
+					<div class="left">
+						<div id="fb-root"></div>
+						<script>
+						(function(d, s, id) {
+						  var js, fjs = d.getElementsByTagName(s)[0];
+						  if (d.getElementById(id)) return;
+						  js = d.createElement(s); js.id = id;
+						  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+						  fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));
+						</script>
+						<div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+						<a href="https://twitter.com/share" class="twitter-share-button" data-via="meigeeteam">Tweet</a>
+						<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+					</div>
+					<div class="left gplus">
+						<!-- Place this tag where you want the +1 button to render. -->
+						<div class="g-plusone" data-size="medium"></div>
+						<!-- Place this tag after the last +1 button tag. -->
+						<script type="text/javascript">
+						  (function() {
+							var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+							po.src = 'https://apis.google.com/js/plusone.js';
+							var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+						  })();
+						</script>
+					</div>
+					<div class="clear"></div>
+				</div>]]></content>
+                <is_active>1</is_active>
+                <stores>
+                    <item>0</item>
+                </stores>
+            </item>
+			<item>
+                <title>Lookbook Social Links</title>
+                <identifier>lookbook_social_links</identifier>
+                <content><![CDATA[{{widget type="meigeewidgetslookbook/sociallinks" twitter="http://twitter.com" rss="http://rss.com" facebook="http://facebook.com" googleplus="https://plus.google.com" linkedin="http://linkedin.com" template="meigee/meigeewidgetslookbook/sociallinks.phtml" pinterest="http://pinterest.com"}}]]></content>
+                <is_active>1</is_active>
+                <stores>
+                    <item>0</item>
+                </stores>
+            </item>
+			<item>
+                <title>Lookbook Slider Slide 1</title>
+                <identifier>lookbook_slider_slide_1</identifier>
+                <content><![CDATA[<a href="#"><img src="{{media url="wysiwyg/slider_img.jpg"}}" data-srcX2="{{media url="wysiwyg/slider_img@x2.jpg"}}" alt="" /></a>]]></content>
+                <is_active>1</is_active>
+                <stores>
+                    <item>0</item>
+                </stores>
+            </item>
+			<item>
+                <title>Lookbook Slider Slide 2</title>
+                <identifier>lookbook_slider_slide_2</identifier>
+                <content><![CDATA[<a href="#"><img src="{{media url="wysiwyg/slider_img_2.jpg"}}" data-srcX2="{{media url="wysiwyg/slider_img_2@x2.jpg"}}" alt="" /></a>]]></content>
+                <is_active>1</is_active>
+                <stores>
+                    <item>0</item>
+                </stores>
+            </item>
+			<item>
+                <title>Lookbook Slider Slide 3</title>
+                <identifier>lookbook_slider_slide_3</identifier>
+                <content><![CDATA[<a href="#"><img src="{{media url="wysiwyg/slider_img_3.jpg"}}" data-srcX2="{{media url="wysiwyg/slider_img_3@x2.jpg"}}" alt="" /></a>]]></content>
+                <is_active>1</is_active>
+                <stores>
+                    <item>0</item>
+                </stores>
+            </item>
+        </blocks>
+    </cms>
+</root>

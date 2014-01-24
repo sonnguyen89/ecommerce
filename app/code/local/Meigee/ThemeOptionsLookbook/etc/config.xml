@@ -1,0 +1,302 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Meigee_ThemeOptionsLookbook>
+            <version>1.0.0</version>
+            <depends>
+            <!-- no dependencies -->
+            </depends>
+        </Meigee_ThemeOptionsLookbook>
+    </modules> 
+	<admin>
+        <routers>
+            <adminhtml2>
+                <use>admin</use>
+                <args>
+                    <module>Meigee_ThemeOptionsLookbook</module>
+                    <frontName>themeoptionslookbook</frontName>
+                </args>
+            </adminhtml2>
+        </routers>
+    </admin>
+    <frontend>
+        <routers>
+           <meigeefrontend>
+              <use>standard</use>
+              <args>
+                 <module>Meigee_ThemeOptionsLookbook</module>
+                 <frontName>meigeeactions</frontName>
+              </args>
+           </meigeefrontend>
+        </routers>
+    </frontend>
+	<adminhtml>
+        <layout>
+            <updates>
+                <meigeesettings>
+                    <file>meigeesettings.xml</file>
+                </meigeesettings>
+            </updates>
+        </layout>
+        <menu>
+            <meigee translate="title" module="ThemeOptionsLookbook">
+                <title>Meigee</title>
+                <sort_order>9999</sort_order>
+                <children>
+                    <theme_options translate="title" module="ThemeOptionsLookbook">
+			<title>Theme Options ver.1.0</title>
+                        <sort_order>1</sort_order>
+                		<children>
+				    <general_options translate="title" module="ThemeOptionsLookbook">
+		                        <title>General Options</title>
+		                        <sort_order>1</sort_order>
+		                        <action>adminhtml/system_config/edit/section/meigee_lookbook_general</action>
+		                    </general_options>
+				    <design_options translate="title" module="ThemeOptionsLookbook">
+		                        <title>Design Options</title>
+		                        <sort_order>2</sort_order>
+		                        <action>adminhtml/system_config/edit/section/meigee_lookbook_design</action>
+		                    </design_options>
+		                    <productpage_options translate="title" module="ThemeOptionsLookbook">
+		                        <title>Product Page Options</title>
+		                        <sort_order>3</sort_order>
+		                        <action>adminhtml/system_config/edit/section/meigee_lookbook_productpage</action>
+		                    </productpage_options>
+		                    <sidebar_options translate="title" module="ThemeOptionsLookbook">
+		                        <title>Sidebar Options</title>
+		                        <sort_order>4</sort_order>
+		                        <action>adminhtml/system_config/edit/section/meigee_lookbook_sidebar</action>
+		                    </sidebar_options>
+		                    <headerslider_options translate="title" module="ThemeOptionsLookbook">
+		                        <title>Header Slider</title>
+		                        <sort_order>5</sort_order>
+		                        <action>adminhtml/system_config/edit/section/meigee_lookbook_headerslider</action>
+		                    </headerslider_options>
+                		</children>
+                    </theme_options>
+		    <restore_theme translate="title" module="ThemeOptionsLookbook">
+                        <title>Restore Defaults</title>
+                        <sort_order>1</sort_order>
+                        <action>themeoptionslookbook/restore/index</action>
+                    </restore_theme>
+                    <activate_theme translate="title" module="ThemeOptionsLookbook">
+                        <title>Activate Theme</title>
+                        <sort_order>1</sort_order>
+                        <action>themeoptionslookbook/activation/index</action>
+                    </activate_theme>
+                </children>
+            </meigee>
+        </menu>
+    </adminhtml>
+	<global>
+		<page>
+		    <layouts>
+			<two_columns module="page" translate="label">
+				<label>2 columns</label>
+				<template>page/2columns.phtml</template>
+				<layout_handle>page_two_columns</layout_handle>
+			</two_columns>
+		    </layouts>
+		</page>
+	<models>
+            <!-- ... -->
+            <ThemeOptionsLookbook>
+                <class>Meigee_ThemeOptionsLookbook_Model</class>
+            </ThemeOptionsLookbook>   
+            <!-- ... -->
+        </models>
+	<events>
+	  <adminhtml_controller_action_predispatch_start>
+	    <observers>
+	      <Meigee_ThemeOptionsLookbook_observer>
+		<type>singleton</type>
+		<class>Meigee_ThemeOptionsLookbook_Controller_Observer</class>
+		<method>overrideTheme</method>
+	      </Meigee_ThemeOptionsLookbook_observer>
+	    </observers>
+	  </adminhtml_controller_action_predispatch_start>  		  
+	</events>
+        <helpers>
+            <ThemeOptionsLookbook>
+                <class>Meigee_ThemeOptionsLookbook_Helper</class>
+            </ThemeOptionsLookbook>
+        </helpers>
+	    <extraconfig />
+	    <blocks>
+	    	<meigee_themeoptionslookbook>
+                    <class>Meigee_ThemeOptionsLookbook_Block</class>
+		</meigee_themeoptionslookbook>
+		<meigee_lookbook_general><class>Meigee_ThemeOptionsLookbook_Block</class></meigee_lookbook_general>
+		<meigee_lookbook_productpage><class>Meigee_ThemeOptionsLookbook_Block</class></meigee_lookbook_productpage>
+		<meigee_lookbook_sidebar><class>Meigee_ThemeOptionsLookbook_Block</class></meigee_lookbook_sidebar>
+		<meigee_lookbook_headerslider><class>Meigee_ThemeOptionsLookbook_Block</class></meigee_lookbook_headerslider>
+		<themeoptionslookbook>
+		    <class>Meigee_ThemeOptionsLookbook_Block</class>
+		    <rewrite>
+			<bestsellers>Meigee_ThemeOptionsLookbook_Block_Bestsellers</bestsellers>
+		    </rewrite>
+	        </themeoptionslookbook>
+	        <page>
+		    <rewrite>
+			<html_topmenu>Meigee_ThemeOptionsLookbook_Block_Html_Topmenu</html_topmenu>
+		    </rewrite>
+	        </page>
+		<customcolorsblock>
+		    <class>Meigee_ThemeOptionsLookbook_Block_EditCustomColors</class>
+           	</customcolorsblock>
+	    </blocks>
+	</global>
+	<!---->
+	<default>
+	    <price_slider>
+		<price_slider_conf>
+		    <timeout>100</timeout>
+		</price_slider_conf>
+		<price_slider_settings>
+		    <slider_loader_active>1</slider_loader_active>
+		    <include_jquery_ui>1</include_jquery_ui>
+		</price_slider_settings>
+		<ajax_conf>
+		    <layered>1</layered>
+		    <overlay_color>#000000</overlay_color>
+		    <overlay_opacity>0.3</overlay_opacity>
+		    <loading_text_color>#000000</loading_text_color>
+		</ajax_conf>
+	    </price_slider>
+	    <design>
+	        <header translate="welcome" module="page">
+	            <welcome>Default welcome msg!</welcome>
+	        </header>
+	        <footer translate="copyright" module="page">
+	             <copyright>&amp;copy; 2012 Magento Demo Store. All Rights Reserved.</copyright>
+	        </footer>
+	    </design>
+		<meigee_lookbook_general>
+			<appearance>
+				<retina>1</retina>
+				<font>2</font>
+				<default_sizes>1</default_sizes>
+				<fontsize>14</fontsize>
+				<gfont>Open Sans Condensed</gfont>
+				<lineheight>20</lineheight>
+				<fontweight>100</fontweight>
+				<patern>none</patern>
+			</appearance>
+			<layout>
+				<responsiveness>1</responsiveness>
+				<sidebar>sidebar_left</sidebar>
+				<grid>grid_standard</grid>
+				<cartpage>cart_standard</cartpage>
+			</layout>
+			<customlogo>
+				<logo_status>0</logo_status>
+			</customlogo>
+			<menu>
+				<type>menu</type>
+				<home>1</home>
+				<additional>1</additional>
+				<cat_button>1</cat_button>
+			</menu>
+			<productlabels>
+				<labelnew>1</labelnew>
+				<labelonsale>1</labelonsale>
+			</productlabels>
+			<otheroptions>
+				<totop>1</totop>
+				<notices>1</notices>
+			</otheroptions>
+			<loginajax>
+				<status>1</status>
+			</loginajax>
+			<lang_switcher>
+				<status>language_flags</status>
+				<label>0</label>
+			</lang_switcher>
+			<curr_switcher>
+				<status>currency_images</status>
+				<label>0</label>
+			</curr_switcher>
+			<fancybox>
+				<fancybox_status>0</fancybox_status>
+				<fancybox_home>0</fancybox_home>
+				<fancybox_listing>0</fancybox_listing>
+			</fancybox>
+			<rollover>
+				<rollover_status>0</rollover_status>
+			</rollover>
+		</meigee_lookbook_general>
+		<meigee_lookbook_design>
+			<base>
+				<sitebg>f5f5f5</sitebg>
+				<maincolor>e0bc82</maincolor>
+				<secondcolor>a8d4dc</secondcolor>
+			</base>
+			<header>
+				<header--slider_background-color>ffffff</header--slider_background-color>
+			</header>
+		</meigee_lookbook_design>
+		<meigee_lookbook_productpage>
+			<productpage>
+				<pagelayout>productpage_medium</pagelayout>
+				<prevnext>prevnext</prevnext>
+				<moreviews>moreviews_slider</moreviews>
+				<collateral>collateral_tabs</collateral>
+				<collateral_related>related_slider</collateral_related>
+			</productpage>
+		</meigee_lookbook_productpage>
+		<meigee_lookbook_sidebar>
+			<block_categories>
+				<status>1</status>
+				<option>1</option>
+				<option_2>1</option_2>
+			</block_categories>
+			<block_shop_by>
+				<status>1</status>
+			</block_shop_by>
+			<block_compare>
+				<status>1</status>
+			</block_compare>
+			<block_compared>
+				<status>1</status>
+			</block_compared>
+			<block_viewed>
+				<status>1</status>
+			</block_viewed>
+			<block_wishlist>
+				<status>1</status>
+				<option>1</option>
+			</block_wishlist>
+			<block_tags>
+				<status>1</status>
+			</block_tags>
+			<block_orders>
+				<status>1</status>
+			</block_orders>			
+		</meigee_lookbook_sidebar>
+		<meigee_lookbook_headerslider>
+		    <coin>
+			<enabled>1</enabled>
+			<slides>lookbook_slider_slide_1, lookbook_slider_slide_2, lookbook_slider_slide_3</slides>
+			<onlyhome>1</onlyhome>
+			<autoSlide>1</autoSlide>
+			<autoSlideTimer>5000</autoSlideTimer>
+			<autoSlideTransTimer>750</autoSlideTransTimer>
+			<desktopClickDrag>1</desktopClickDrag>
+			<infiniteSlider>1</infiniteSlider>
+		    </coin>
+		</meigee_lookbook_headerslider>
+		<ajax>
+			<wishlistcompare>
+				<enabled>1</enabled>
+				<enabledpro>1</enabledpro>
+			</wishlistcompare>
+			<general>
+				<enabled>1</enabled>
+				<enabledpro>1</enabledpro>
+			</general>
+			<ajaxtoolbar>
+				<enabled>1</enabled>
+			</ajaxtoolbar>
+		</ajax>
+	</default>
+</config>

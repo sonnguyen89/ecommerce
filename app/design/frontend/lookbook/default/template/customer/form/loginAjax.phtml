@@ -1,0 +1,58 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+?>
+<?php
+/**
+ * Customer login form template
+ *
+ * @see Mage_Customer_Block_Form_Login
+ */
+?>
+<div class="account-login">
+	<div class="close-button"><i class="icon-remove"></i></div>
+	<div class="page-title">
+		<h1><?php echo $this->__('Login') ?></h1>
+		<div class="link-box">or  <a href="#"><?php echo $this->__('Register') ?></a></div>
+		<div class="clear"></div>
+    </div>
+	<form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="login-form">
+		<h2><?php echo $this->__('Registered customer') ?></h2>
+		<p><?php echo $this->__('If you have an account with us, please log in.') ?></p>
+		<ul class="form-list">
+			<li>
+				<label for="email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+				<div class="input-box">
+					<input type="text" name="login[username]" value="<?php echo $this->escapeHtml($this->getUsername()) ?>" id="email" class="input-text required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" />
+				</div>
+			</li>
+			<li>
+				<label for="pass" class="required"><em>*</em><?php echo $this->__('Password') ?></label>
+				<div class="input-box">
+					<input type="password" name="login[password]" class="input-text required-entry validate-password" id="pass" title="<?php echo $this->__('Password') ?>" />
+				</div>
+			</li>
+			<?php echo $this->getChildHtml('form.additional.info'); ?>
+		</ul>
+		<p class="required"><?php echo $this->__('* Required Fields') ?></p>
+		<a href="<?php echo $this->getForgotPasswordUrl() ?>" class="f-left"><?php echo $this->__('Forgot Your Password?') ?></a>
+		<div class="clear"></div>
+		<div class="actions">
+			<button type="submit" class="button" title="<?php echo $this->__('Login') ?>" name="send" id="send2"><span><span><?php echo $this->__('Login') ?></span></span></button>
+		</div>
+	</form>
+    <script type="text/javascript">
+		//<![CDATA[
+			var dataForm = new VarienForm('login-form', false);
+		//]]>
+		jQuery('.account-login .page-title .link-box a').on('click', function(){
+			ajaxLogin("<?php echo $this->getUrl('meigeeactions/register/') ?>", true);
+			return false;
+		});
+    </script>
+</div>

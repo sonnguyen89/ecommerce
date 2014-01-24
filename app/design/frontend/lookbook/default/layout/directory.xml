@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+
+-->
+<layout version="0.1.0">
+
+<!--
+Category default layout
+-->
+    <default>
+        <reference name="head">
+            <block type="core/template" name="optional_zip_countries" as="optional_zip_countries" template="directory/js/optional_zip_countries.phtml" />
+        </reference>
+        <reference name="footer">
+            <block type="directory/currency" name="currency" before="catalog.leftnav" template="directory/currency_header.phtml"/>
+        </reference>
+    </default>
+
+    <catalog_category_default>
+        <reference name="footer">
+            <block type="directory/currency" name="currency" before="catalog.leftnav" template="directory/currency_header.phtml"/>
+        </reference>
+    </catalog_category_default>
+
+<!--
+Category layered navigation layout
+-->
+
+    <catalog_category_layered>
+        <reference name="footer">
+            <block type="directory/currency" name="currency" before="catalog.leftnav" template="directory/currency_header.phtml"/>
+        </reference>
+    </catalog_category_layered>
+
+<!--
+Catalog Search layout
+-->
+
+    <catalogsearch_advanced_index>
+        <reference name="footer">
+            <block type="directory/currency" name="currency" before="-" template="directory/currency_header.phtml"/>
+        </reference>
+    </catalogsearch_advanced_index>
+
+    <catalogsearch_result_index>
+        <reference name="footer">
+            <block type="directory/currency" name="currency" before="-" template="directory/currency_header.phtml"/>
+        </reference>
+    </catalogsearch_result_index>
+
+    <catalogsearch_advanced_result>
+        <reference name="footer">
+            <block type="directory/currency" name="currency" before="-" template="directory/currency_header.phtml"/>
+        </reference>
+    </catalogsearch_advanced_result>
+
+</layout>

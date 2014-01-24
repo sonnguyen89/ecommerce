@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <VS_Ajax>
+            <active>true</active>
+            <codePool>community</codePool>
+        </VS_Ajax>
+    </modules>
+</config> 

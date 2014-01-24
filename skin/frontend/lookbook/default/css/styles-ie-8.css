@@ -1,0 +1,139 @@
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_blank
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+.fancybox-overlay,
+.ajax-box-overlay{
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#4D000000,endColorstr=#4D000000);
+	zoom: 1;
+}
+.lockshowloading,
+.ajax-box-overlay i.load{
+	display: none;
+}
+
+aside.sidebar .actions a:hover span
+header#header .top-cart .block-content .actions a:hover span,
+button.button:hover span span{
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#1A000000,endColorstr=#1A000000);
+	zoom: 1;
+}
+
+header#header .links li a{border-right:1px solid #525252;}
+
+header#header .links li a:hover,
+header#header dl.company-links dt a:hover{
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#1Affffff,endColorstr=#1Affffff);
+	zoom: 1;
+}
+
+header#header .top-cart .block-title .cart-button .button-arrow span{
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#1A000000,endColorstr=#1A000000);
+	zoom: 1;
+}
+
+.header-slider-container .iosSlider .prev,
+.header-slider-container .iosSlider .next{
+	background-color:#6e7375;
+}
+
+.widget-box{
+	border:1px solid #ddd;
+}
+
+
+.social-block h2{
+	position: static;
+	margin-top: 1.5em;
+    padding-top: 4px;
+	display: inline-block;
+}
+ul.social-links{
+	padding-top: 0.75em;
+	padding-left: 0;
+	float: none;
+}
+
+header#header.header-slider{
+	border-bottom: 1px solid #ddd;
+}
+
+aside.sidebar section{
+	border:1px solid #ddd;
+}
+
+header#header .header-wrapper{
+	border-bottom:1px solid #ddd;
+}
+.cms-home header#header .header-wrapper{border-bottom: none;}
+
+#footer .footer-block,
+#footer .footer-top-block{border: 1px solid #ddd;}
+
+#footer .footer-block{
+	position: relative;
+	margin: 0 -1px;
+}
+
+.product-view .product-column-wrapper{
+	border: 1px solid #ddd;
+	position: relative;
+	margin-left: -2px;
+	margin-right: -2px;
+}
+
+.checkout-onepage-index .column-wrapper,
+.main-container.col1-layout .column-wrapper,
+.review-col,
+.rel-col,
+.meigee-tabs-content{border: 1px solid #ddd;}
+
+.cms-home .main-container.col1-layout .column-wrapper{border: none;}
+
+.products-grid .btn-quick-view:hover span span,
+.products-list .btn-quick-view:hover span span{
+	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(enabled=false)";
+}
+
+header#header dl.company-links dd{
+	border:1px solid #ccc;
+}
+
+.products-grid .btn-quick-view i.circle-left,
+.products-list .btn-quick-view i.circle-left,
+.products-grid .btn-quick-view i.circle-right,
+.products-list .btn-quick-view i.circle-right{display: none;}
+
+
+.products-grid li.item .btn-quick-view,
+.products-list li.item .btn-quick-view{display: none;}
+
+.mobile-device .products-grid li.item .btn-quick-view,
+.mobile-device .products-list li.item .btn-quick-view,
+.products-grid li.item:hover .btn-quick-view,
+.products-list li.item:hover .btn-quick-view{
+	display: inline-block;
+}
+
+

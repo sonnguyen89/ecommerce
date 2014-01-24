@@ -1,0 +1,515 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+?>
+<?php
+    $_productCollection=$this->getLoadedProductCollection();
+    $_helper = $this->helper('catalog/output');
+    $fancybox = MAGE::helper('ThemeOptionsLookbook')->getThemeOptionsLookbook('fancybox' );
+    $grid = MAGE::helper('ThemeOptionsLookbook')->getThemeOptionsLookbook('grid' );
+?>
+<?php if(!$_productCollection->count()): ?>
+<p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+<?php else: ?>
+<section class="category-products">
+    <?php echo $this->getToolbarHtml() ?>
+    <?php // List mode ?>
+    <?php if($this->getMode()!='grid'): ?>
+    <?php $_iterator = 0; ?>
+    <ol class="products-list" id="products-list">
+    <?php foreach ($_productCollection as $_product): ?>
+		<?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+        <li class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
+            <?php // Product Image ?>
+            <div class="grid_3 alpha">
+                <div class="product-img-box">
+					<?php 
+						/* Label New */ 
+						if(MAGE::helper('ThemeOptionsLookbook')->getProductLabels($_product)){
+							$keywords = array('label-new');
+							$labelstring = MAGE::helper('ThemeOptionsLookbook')->getProductLabels($_product);
+							$isKeyAvaliable = false;
+							foreach($keywords as $word){
+								if(strpos($labelstring, $word)){
+									$isKeyAvaliable = true;
+								}
+							}
+							if($isKeyAvaliable == false){
+								echo '<div class="no-label-new">';
+							}
+							echo MAGE::helper('ThemeOptionsLookbook')->getProductLabels($_product);
+							if($isKeyAvaliable == false){
+								echo '</div> ';
+							}
+						}
+					?>
+                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><div class="hover-box"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(300, null); ?>" <?php echo MAGE::helper('ThemeOptionsLookbook/Retina')->getRetinaData('list', $_product); ?> alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /><?php /* Hover Image */ echo MAGE::helper('ThemeOptionsLookbook')->getHoverImage($_product, 300, 600); ?></div></a>
+                    <?php // Fancybox
+                    if ($fancybox['fancybox_status'] && $fancybox['fancybox_listing'] == 1): ?>
+                        <a class="fancybox category-gallery" title="<?php echo $_productNameStripped; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>">&nbsp;</a>
+                    <?php endif; // End Fancybox ?>
+					<div class="top-box">
+						<?php if(Mage::getStoreConfig('ajax/general/enabledpro')){ ?>
+						<button type="button" title="<?php echo $this->__('Quick View') ?>" class="button btn-quick-view" onclick="showOptions('<?php echo $_product->getId()?>')"><span><span><i class="circle-left"></i><i class="circle-right"></i><?php echo $this->__('Quick View') ?></span></span></button>
+						<a href='<?php echo $this->getUrl('ajax/index/options',array('product_id'=>$_product->getId()));?>' class='ajax-fancybox' id='fancybox<?php echo $_product->getId()?>' style='display:none'>Test</a>
+						<?php } ?>
+					</div>
+                </div>
+            </div>
+            <?php // Product description ?>
+            <div class="<?php if($this->getLayout()->getBlock('root')->getTemplate() == 'page/1column.phtml'){echo 'grid_9';}else{echo 'grid_6';} ?> omega">
+				<div class="product-shop">
+					<?php if($_product->isSaleable()): ?>
+						<p class="availability in-stock"><i class="icon-ok"></i><?php echo $this->__('In stock') ?></p>
+					<?php else: ?>
+						<p class="availability out-of-stock"><i class="icon-remove"></i><?php echo $this->__('Out of stock') ?></p>
+					<?php endif; ?>
+					<div class="left">
+						<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $_helper->productAttribute($_product, $_product->getName() , 'name'); ?></a></h2>
+						<?php if($_product->getRatingSummary()): ?>
+						<?php echo $this->getReviewsSummaryHtml($_product) ?>
+						<?php endif; ?>
+					</div>
+					<div class="clear"></div>
+					<div class="item-box">
+						<div class="<?php if($this->getLayout()->getBlock('root')->getTemplate() == 'page/1column.phtml'){echo 'grid_6';}else{echo 'grid_3';} ?> alpha">
+							<div class="desc std">
+								<h3><?php echo $this->__('Quick view:') ?></h3>
+								<?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+								<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped ?>" class="link-learn"><?php echo $this->__('Learn More') ?></a>
+							</div>
+						</div>
+						<div class="grid_3 omega">
+							<?php if ( !($_product->getTypeInstance(true)->hasRequiredOptions($_product) || $_product->isGrouped()) ): ?>
+								<div class="price-button-box">
+							<?php else: ?>
+								<div class="no-button">
+							<?php endif; ?>
+								<?php
+									$keywords = array('old-price', 'special-price', 'minimal-price-link', 'price-from', 'price-to', 'price-excluding-tax', 'price-including-tax');
+									$exeptions = array('map-info');
+									$exeption_flag = false;
+									$pricestring = $this->getPriceHtml($_product, true);
+									$isKeyAvaliable = false;
+									foreach($keywords as $word){
+										if(strpos($pricestring, $word)){
+											$isKeyAvaliable = true;
+										}
+									}
+									foreach($exeptions as $word){
+										if(strpos($pricestring, $word)){
+											$exeption_flag = true;
+										}
+									}
+									if($exeption_flag == true){
+										$isKeyAvaliable = false;
+									}
+								?>
+								<div class="price-block<?php if($exeption_flag == true){echo ' click-for';} ?>">
+									<?php if($isKeyAvaliable == false): ?>
+									<label><?php echo $this->__('Price:') ?> </label>
+									<?php endif; ?>
+									<?php if($isKeyAvaliable == true): ?>
+										<a class="price-details" href="#"><?php echo $this->__('Click for Price') ?></a>
+										<div class="detailed-price-box">
+									<?php endif; ?>
+										<?php echo $this->getPriceHtml($_product, true) ?>
+									<?php if($isKeyAvaliable == true): ?>
+										</div>
+									<?php endif; ?>
+								</div>
+								<?php if($_product->isSaleable()): ?>
+									<?php if(Mage::getStoreConfig('ajax/general/enabledpro')){ ?>
+										<?php if ( !($_product->getTypeInstance(true)->hasRequiredOptions($_product) || $_product->isGrouped()) ): ?>
+											<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocationAjax('<?php echo $this->getAddToCartUrl($_product) ?>','<?php echo $_product->getId()?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+											<span id='ajax_loader<?php echo $_product->getId()?>' class="ajax-loader-item" style='display:none'><img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif')?>'/></span>
+										<?php else: ?>
+											<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button" onclick="showOptions('<?php echo $_product->getId()?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+											<a href='<?php echo $this->getUrl('ajax/index/options',array('product_id'=>$_product->getId()));?>' class='ajax-fancybox' id='fancybox<?php echo $_product->getId()?>' style='display:none'>Test</a>
+										<?php endif; ?>
+									<?php }else{ ?>
+										 <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+									<?php } ?>
+								<?php endif; ?>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<?php if(Mage::getStoreConfig('ajax/wishlistcompare/enabledpro')){ ?>
+					 <ul class="add-to-links">
+						<?php if ($this->helper('wishlist')->isAllow()) : ?>
+							<li><a href="#" onclick='ajaxWishlist("<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>","<?php echo $_product->getId()?>");return false;' class="link-wishlist"><i class="icon-star"></i><?php echo $this->__('Add to Wishlist') ?><span id='ajax_wishlist_loading<?php echo $_product->getId()?>' class="ajax-loader-item" style='display:none'><img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif')?>'/></span></a></li>
+						<?php endif; ?>
+						<?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+							<li><span class="separator">|</span> <a href="#" onclick='ajaxCompare("<?php echo $_compareUrl ?>","<?php echo $_product->getId()?>");return false;' class="link-compare"><i class="icon-exchange"></i><?php echo $this->__('Add to Compare') ?><span id='ajax_loading<?php echo $_product->getId()?>' class="ajax-loader-item" style='display:none'><img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif')?>'/></span></a></li>
+						<?php endif; ?>
+					</ul>
+					<?php }else{ ?>
+					<ul class="add-to-links">
+					<?php if ($this->helper('wishlist')->isAllow()) : ?>
+						<li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><i class="icon-star"></i><?php echo $this->__('Add to Wishlist') ?></a></li>
+					<?php endif; ?>
+					<?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+						<li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><i class="icon-exchange"></i><?php echo $this->__('Add to Compare') ?></a></li>
+					<?php endif; ?>
+					</ul>
+					<?php } ?>
+				</div>
+            </div>
+        </li>
+    <?php endforeach; ?>
+    </ol>
+    <script type="text/javascript">decorateList('products-list', 'none-recursive')</script>
+
+    <?php else: ?>
+
+    <?php // Grid Mode ?>
+
+    <?php $_collectionSize = $_productCollection->count() ?>
+    <?php $_columnCount = $this->getColumnCount(); ?>
+
+
+    <?php if ($grid == 'grid_large'): //////// Grid Large ?>
+
+    <ul class="products-grid large-grid">
+    <?php $i=0; foreach ($_productCollection as $_product): ?>   
+		<?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+            <li class="grid_3 item">
+				<div class="product-container">
+					<div class="product-img-box">
+						<?php  // Fancybox
+						if ($fancybox['fancybox_status'] && $fancybox['fancybox_listing'] == 1): ?>
+								<a class="fancybox category-gallery" title="<?php echo $_productNameStripped; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>"><i class="icon-search"></i></a>
+							<?php endif;
+						// End Fancybox ?>
+						<?php 
+							/* Label New */ 
+							if(MAGE::helper('ThemeOptionsLookbook')->getProductLabels($_product)){
+								$keywords = array('label-new');
+								$labelstring = MAGE::helper('ThemeOptionsLookbook')->getProductLabels($_product);
+								$isKeyAvaliable = false;
+								foreach($keywords as $word){
+									if(strpos($labelstring, $word)){
+										$isKeyAvaliable = true;
+									}
+								}
+								if($isKeyAvaliable == false){
+									echo '<div class="no-label-new">';
+								}
+								echo MAGE::helper('ThemeOptionsLookbook')->getProductLabels($_product);
+								if($isKeyAvaliable == false){
+									echo '</div> ';
+								}
+							}
+						?>
+						<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><div class="hover-box"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(300, null); ?>" <?php echo MAGE::helper('ThemeOptionsLookbook/Retina')->getRetinaData('grid', $_product); ?> alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /><?php /* Hover Image */ echo MAGE::helper('ThemeOptionsLookbook')->getHoverImage($_product, 300, 600); ?></div></a>
+						<div class="top-box">
+							<?php if(Mage::getStoreConfig('ajax/wishlistcompare/enabledpro')){ ?>
+							 <ul class="add-to-links">
+								<?php if ($this->helper('wishlist')->isAllow()) : ?>
+									<li><a href="#" onclick='ajaxWishlist("<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>","<?php echo $_product->getId()?>");return false;' class="link-wishlist"><i class="icon-star"></i><?php echo $this->__('Add to Wishlist') ?><span id='ajax_wishlist_loading<?php echo $_product->getId()?>' class="ajax-loader-item" style='display:none'><img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif')?>'/></span></a></li>
+								<?php endif; ?>
+								<?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+									<li><span class="separator">|</span> <a href="#" onclick='ajaxCompare("<?php echo $_compareUrl ?>","<?php echo $_product->getId()?>");return false;' class="link-compare"><i class="icon-exchange"></i><?php echo $this->__('Add to Compare') ?><span id='ajax_loading<?php echo $_product->getId()?>' class="ajax-loader-item" style='display:none'><img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif')?>'/></span></a></li>
+								<?php endif; ?>
+							</ul>
+							<?php }else{ ?>
+							<ul class="add-to-links">
+							<?php if ($this->helper('wishlist')->isAllow()) : ?>
+								<li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><i class="icon-star"></i><?php echo $this->__('Add to Wishlist') ?></a></li>
+							<?php endif; ?>
+							<?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+								<li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><i class="icon-exchange"></i><?php echo $this->__('Add to Compare') ?></a></li>
+							<?php endif; ?>
+							</ul>
+							<?php } ?>
+							<?php if(Mage::getStoreConfig('ajax/general/enabledpro')){ ?>
+							<button type="button" title="<?php echo $this->__('Quick View') ?>" class="button btn-quick-view" onclick="showOptions('<?php echo $_product->getId()?>')"><span><span><i class="circle-left"></i><i class="circle-right"></i><?php echo $this->__('Quick View') ?></span></span></button>
+							<a href='<?php echo $this->getUrl('ajax/index/options',array('product_id'=>$_product->getId()));?>' class='ajax-fancybox' id='fancybox<?php echo $_product->getId()?>' style='display:none'>Test</a>
+							<?php } ?>
+						</div>
+					</div>
+					<div class="actions">
+						<div class="indent">
+							<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
+						</div>
+					</div>
+					<?php echo $this->getPriceHtml($_product, true); ?>
+				</div>
+            </li>
+        <?php endforeach ?>
+        </ul>
+        <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+
+    <?php elseif ($grid == 'grid_standard'): //////// Standard Grid ?>
+    
+    <ul class="products-grid">
+    <?php $i=1; foreach ($_productCollection as $_product): ?>
+		<?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+            <li class="grid_3 item">
+				<div class="product-container">
+					<div class="product-img-box">
+						<?php  // Fancybox
+						if ($fancybox['fancybox_status'] && $fancybox['fancybox_listing'] == 1): ?>
+								<a class="fancybox category-gallery" title="<?php echo $_productNameStripped; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>"><i class="icon-search"></i></a>
+							<?php endif;
+						// End Fancybox ?>
+						<?php 
+							/* Label New */ 
+							if(MAGE::helper('ThemeOptionsLookbook')->getProductLabels($_product)){
+								$keywords = array('label-new');
+								$labelstring = MAGE::helper('ThemeOptionsLookbook')->getProductLabels($_product);
+								$isKeyAvaliable = false;
+								foreach($keywords as $word){
+									if(strpos($labelstring, $word)){
+										$isKeyAvaliable = true;
+									}
+								}
+								if($isKeyAvaliable == false){
+									echo '<div class="no-label-new">';
+								}
+								echo MAGE::helper('ThemeOptionsLookbook')->getProductLabels($_product);
+								if($isKeyAvaliable == false){
+									echo '</div> ';
+								}
+							}
+						?>
+						<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><div class="hover-box"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(300, null); ?>" <?php echo MAGE::helper('ThemeOptionsLookbook/Retina')->getRetinaData('grid', $_product); ?> alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /><?php /* Hover Image */ echo MAGE::helper('ThemeOptionsLookbook')->getHoverImage($_product, 300, 600); ?></div></a>
+						<div class="top-box">
+							<?php if(Mage::getStoreConfig('ajax/wishlistcompare/enabledpro')){ ?>
+							 <ul class="add-to-links">
+								<?php if ($this->helper('wishlist')->isAllow()) : ?>
+									<li><a href="#" onclick='ajaxWishlist("<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>","<?php echo $_product->getId()?>");return false;' class="link-wishlist"><i class="icon-star"></i><?php echo $this->__('Add to Wishlist') ?><span id='ajax_wishlist_loading<?php echo $_product->getId()?>' class="ajax-loader-item" style='display:none'><img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif')?>'/></span></a></li>
+								<?php endif; ?>
+								<?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+									<li><span class="separator">|</span> <a href="#" onclick='ajaxCompare("<?php echo $_compareUrl ?>","<?php echo $_product->getId()?>");return false;' class="link-compare"><i class="icon-exchange"></i><?php echo $this->__('Add to Compare') ?><span id='ajax_loading<?php echo $_product->getId()?>' class="ajax-loader-item" style='display:none'><img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif')?>'/></span></a></li>
+								<?php endif; ?>
+							</ul>
+							<?php }else{ ?>
+							<ul class="add-to-links">
+							<?php if ($this->helper('wishlist')->isAllow()) : ?>
+								<li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><i class="icon-star"></i><?php echo $this->__('Add to Wishlist') ?></a></li>
+							<?php endif; ?>
+							<?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+								<li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><i class="icon-exchange"></i><?php echo $this->__('Add to Compare') ?></a></li>
+							<?php endif; ?>
+							</ul>
+							<?php } ?>
+							<?php if(Mage::getStoreConfig('ajax/general/enabledpro')){ ?>
+							<button type="button" title="<?php echo $this->__('Quick View') ?>" class="button btn-quick-view" onclick="showOptions('<?php echo $_product->getId()?>')"><span><span><i class="circle-left"></i><i class="circle-right"></i><?php echo $this->__('Quick View') ?></span></span></button>
+							<a href='<?php echo $this->getUrl('ajax/index/options',array('product_id'=>$_product->getId()));?>' class='ajax-fancybox' id='fancybox<?php echo $_product->getId()?>' style='display:none'>Test</a>
+							<?php } ?>
+						</div>
+					</div>
+					<div class="actions">
+						<div class="indent">
+							<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
+						</div>
+					</div>
+					<?php echo $this->getPriceHtml($_product, true); ?>
+				</div>
+            </li>
+            <?php $i++; endforeach ?>
+        </ul>
+        <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+        
+    <?php elseif ($grid == 'grid_small'): ?>
+
+    <ul class="products-grid small-grid">
+    <?php $i=0; foreach ($_productCollection as $_product): ?>
+		<?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
+            <li class="item">
+				<div class="product-container">
+					<div class="product-img-box">
+						<?php  // Fancybox
+						if ($fancybox['fancybox_status'] && $fancybox['fancybox_listing'] == 1): ?>
+								<a class="fancybox category-gallery" title="<?php echo $_productNameStripped; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>"><i class="icon-search"></i></a>
+							<?php endif;
+						// End Fancybox ?>
+						<?php 
+							/* Label New */ 
+							if(MAGE::helper('ThemeOptionsLookbook')->getProductLabels($_product)){
+								$keywords = array('label-new');
+								$labelstring = MAGE::helper('ThemeOptionsLookbook')->getProductLabels($_product);
+								$isKeyAvaliable = false;
+								foreach($keywords as $word){
+									if(strpos($labelstring, $word)){
+										$isKeyAvaliable = true;
+									}
+								}
+								if($isKeyAvaliable == false){
+									echo '<div class="no-label-new">';
+								}
+								echo MAGE::helper('ThemeOptionsLookbook')->getProductLabels($_product);
+								if($isKeyAvaliable == false){
+									echo '</div> ';
+								}
+							}
+						?>
+						<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><div class="hover-box"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(300, null); ?>" <?php echo MAGE::helper('ThemeOptionsLookbook/Retina')->getRetinaData('grid', $_product); ?> alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /><?php /* Hover Image */ echo MAGE::helper('ThemeOptionsLookbook')->getHoverImage($_product, 300, 600); ?></div></a>
+						<div class="top-box">
+							<?php if(Mage::getStoreConfig('ajax/wishlistcompare/enabledpro')){ ?>
+							 <ul class="add-to-links">
+								<?php if ($this->helper('wishlist')->isAllow()) : ?>
+									<li><a href="#" onclick='ajaxWishlist("<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>","<?php echo $_product->getId()?>");return false;' class="link-wishlist"><i class="icon-star"></i><?php echo $this->__('Add to Wishlist') ?><span id='ajax_wishlist_loading<?php echo $_product->getId()?>' class="ajax-loader-item" style='display:none'><img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif')?>'/></span></a></li>
+								<?php endif; ?>
+								<?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+									<li><span class="separator">|</span> <a href="#" onclick='ajaxCompare("<?php echo $_compareUrl ?>","<?php echo $_product->getId()?>");return false;' class="link-compare"><i class="icon-exchange"></i><?php echo $this->__('Add to Compare') ?><span id='ajax_loading<?php echo $_product->getId()?>' class="ajax-loader-item" style='display:none'><img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif')?>'/></span></a></li>
+								<?php endif; ?>
+							</ul>
+							<?php }else{ ?>
+							<ul class="add-to-links">
+							<?php if ($this->helper('wishlist')->isAllow()) : ?>
+								<li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><i class="icon-star"></i><?php echo $this->__('Add to Wishlist') ?></a></li>
+							<?php endif; ?>
+							<?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+								<li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><i class="icon-exchange"></i><?php echo $this->__('Add to Compare') ?></a></li>
+							<?php endif; ?>
+							</ul>
+							<?php } ?>
+							<?php if(Mage::getStoreConfig('ajax/general/enabledpro')){ ?>
+							<button type="button" title="<?php echo $this->__('Quick View') ?>" class="button btn-quick-view" onclick="showOptions('<?php echo $_product->getId()?>')"><span><span><i class="circle-left"></i><i class="circle-right"></i><?php echo $this->__('Quick View') ?></span></span></button>
+							<a href='<?php echo $this->getUrl('ajax/index/options',array('product_id'=>$_product->getId()));?>' class='ajax-fancybox' id='fancybox<?php echo $_product->getId()?>' style='display:none'>Test</a>
+							<?php } ?>
+						</div>
+					</div>
+					<div class="actions">
+						<div class="indent">
+							<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
+						</div>
+					</div>
+					<?php echo $this->getPriceHtml($_product, true); ?>
+				</div>
+            </li>
+        <?php endforeach ?>
+        </ul>
+        <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+        
+    <?php endif; ///////////// Grid ?>
+    <script type="text/javascript">
+		function isotopeProcessor(){
+			jQuery('.products-grid .product-img-box img').load(function(){
+				setTimeout(function(){
+				
+				var $container = jQuery('.products-grid');
+				$container.isotope({
+					itemSelector: '.item',
+					resizable: true,
+					layoutMode : 'fitRows'
+				});
+				}, 1000);
+				jQuery('.products-grid li.item').each(function(){
+					jQuery(this).find('a.price-details').off().on('click', function(){
+						jQuery(this).next('.detailed-price-box').fadeToggle('fast');
+						return false;
+					});
+					jQuery(this).on('mouseleave', function(){
+						jQuery(this).find('.detailed-price-box').fadeOut('fast');
+					});
+				});
+			});
+		}
+		isotopeProcessor();
+    </script>
+    <?php endif; ?>
+	<?php if(Mage::getStoreConfig('ajax/general/enabledpro')){ ?>
+	<script type="text/javascript">
+		jQuery(document).ready(function(){
+			jQuery('.ajax-fancybox').fancybox(
+				{
+				   hideOnContentClick : true,
+				   width:600,
+				   autoDimensions: true,
+				   type : 'iframe',
+				   showTitle: false,
+				   scrolling: 'no',
+				   afterLoad: function(){
+						setTimeout(function(){
+							var frameBodyHeight = jQuery('.fancybox-iframe').contents().find('body').height();
+							if(jQuery(window).height() > frameBodyHeight+30){
+								jQuery('.fancybox-inner').css('height', frameBodyHeight+1);
+							}
+						}, 1000);
+					}
+				}
+			);
+			
+			/* button loader */
+			jQuery('.products-grid li.item .btn-cart').on('click', function(){
+				jQuery(this).parent().addClass('active');
+			});
+			
+			
+			jQuery('.products-list li.item .price-button-box').each(function(){
+				jQuery(this).find('a.price-details').off().on('click', function(){
+					jQuery(this).next('.detailed-price-box').fadeToggle('fast');
+					return false;
+				});
+				jQuery(this).on('mouseleave', function(){
+					jQuery(this).find('.detailed-price-box').fadeOut('fast');
+				});
+			});
+			
+			jQuery('.lockshow-bg').remove();
+		});
+		
+		
+		function showOptions(id){
+			jQuery('#fancybox'+id).trigger('click');
+		}
+		function setAjaxData(data,iframe){
+			if(data.status == 'ERROR'){
+				alert(data.message);
+			}else{
+				if(jQuery('.top-cart')){
+					jQuery('.top-cart').replaceWith(data.sidebar);
+				}
+				/* if(jQuery('.header .links')){
+					jQuery('.header .links').replaceWith(data.toplink);
+				} */
+				jQuery.fancybox.close();
+				jQuery('body').append('<div class="add-to-cart-success">' + data.message +' <a href="<?php echo $this->getUrl('checkout/cart'); ?>"><span><?php echo $this->__('Go to Shopping Cart') ?></span></a><a href="#" class="btn-remove"><i class="icon-remove"></i></a></div>');
+				setTimeout(function () {jQuery('.add-to-cart-success').slideUp(500)}, 5000);
+				jQuery('.add-to-cart-success a.btn-remove').click(function(){
+					jQuery(this).parent().slideUp(500);
+					return false;
+				});
+			}
+		}
+		function setLocationAjax(url,id){
+			url += 'isAjax/1';
+			url = url.replace("checkout/cart","ajax/index");
+			jQuery('#ajax_loader'+id).show().parent().addClass('active');
+			
+			try {
+				jQuery.ajax( {
+					url : url,
+					dataType : 'json',
+					success : function(data) {
+						jQuery('#ajax_loader'+id).hide().parent().removeClass('active');
+						jQuery('.products-grid li.item').removeClass('active');
+						setAjaxData(data,false);
+					}
+				});
+			} catch (e) {
+			}
+		}
+    </script>
+    <?php } ?>
+    <div class="toolbar-bottom">
+        <?php echo $this->getToolbarHtml() ?>
+    </div>
+</section>
+<?php endif; ?>

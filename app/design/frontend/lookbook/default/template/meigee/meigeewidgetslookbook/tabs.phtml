@@ -1,0 +1,52 @@
+<?php // Tabs
+$tabs = $this->getTabsContent();
+?>
+<ul class="meigee-tabs">
+  <?php if ( !empty($tabs ['tab_content'])): ?><li id="meigee_tabs_tab" class="active"><a href="javascript:void(0)"><?php echo $tabs ['tab_title']; ?></a></li><?php endif; ?>
+  <?php if ( !empty($tabs ['tab_content_2'])): ?><li id="meigee_tabs_tab2"><a href="javascript:void(0)"><?php echo $tabs ['tab_title_2']; ?></a></li><?php endif; ?>
+  <?php if ( !empty($tabs ['tab_content_3'])): ?><li id="meigee_tabs_tab3"><a href="javascript:void(0)"><?php echo $tabs ['tab_title_3']; ?></a></li><?php endif; ?>
+  <?php if ( !empty($tabs ['tab_content_4'])): ?><li id="meigee_tabs_tab4"><a href="javascript:void(0)"><?php echo $tabs ['tab_title_4']; ?></a></li><?php endif; ?>
+  <?php if ( !empty($tabs ['tab_content_5'])): ?><li id="meigee_tabs_tab5"><a href="javascript:void(0)"><?php echo $tabs ['tab_title_5']; ?></a></li><?php endif; ?>
+</ul>
+<?php if ( !empty($tabs ['tab_content'])): ?><div class="meigee-tabs-content" id="meigee_tabs_tab_contents"><?php echo $tabs ['tab_content']; ?></div><?php endif; ?>
+<?php if ( !empty($tabs ['tab_content_2'])): ?><div class="meigee-tabs-content" id="meigee_tabs_tab2_contents"><?php echo $tabs ['tab_content_2']; ?></div><?php endif; ?>
+<?php if ( !empty($tabs ['tab_content_3'])): ?><div class="meigee-tabs-content" id="meigee_tabs_tab3_contents"><?php echo $tabs ['tab_content_3']; ?></div><?php endif; ?>
+<?php if ( !empty($tabs ['tab_content_4'])): ?><div class="meigee-tabs-content" id="meigee_tabs_tab4_contents"><?php echo $tabs ['tab_content_4']; ?></div><?php endif; ?>
+<?php if ( !empty($tabs ['tab_content_5'])): ?><div class="meigee-tabs-content" id="meigee_tabs_tab5_contents"><?php echo $tabs ['tab_content_5']; ?></div><?php endif; ?>
+
+<script type="text/javascript">
+//<![CDATA[
+Varien.Tabs = Class.create();
+Varien.Tabs.prototype = {
+  initialize: function(selector) {
+    var self=this;
+    $$(selector+' a').each(this.initTab.bind(this));
+  },
+
+  initTab: function(el) {
+      el.href = 'javascript:void(0)';
+      if ($(el.parentNode).hasClassName('active')) {
+        this.showContent(el);
+      }
+      el.observe('click', this.showContent.bind(this, el));
+  },
+
+  showContent: function(a) {
+    var li = $(a.parentNode), ul = $(li.parentNode);
+    ul.select('li', 'ol').each(function(el){
+      var contents = $(el.id+'_contents');
+      if (el==li) {
+        el.addClassName('active');
+        contents.show();
+      } else {
+        el.removeClassName('active');
+        contents.hide();
+      }
+    });
+  }
+}
+new Varien.Tabs('.meigee-tabs');
+$$('.meigee-tabs li:first')[0].addClassName('first');
+$$('.meigee-tabs li:last')[0].addClassName('last');
+//]]>
+</script>

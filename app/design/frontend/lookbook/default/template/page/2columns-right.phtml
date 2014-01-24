@@ -1,0 +1,56 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ *
+ *
+ *
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<?php 
+/*****/
+$custompatern = MAGE::helper('ThemeOptionsLookbook')->getThemeOptionsLookbook('custompatern');
+$bgPatern = $paternurl = $mediaurl = "";
+if (!$custompatern):
+    $bgPatern = MAGE::helper('ThemeOptionsLookbook')->getThemeOptionsLookbook('patern');
+else:
+    $mediaurl = MAGE::helper('ThemeOptionsLookbook')->getThemeOptionsLookbook('mediaurl');
+    $paternurl = 'style="background:url('.$mediaurl.$custompatern.') center top repeat;"';
+endif;
+/*****/
+?>
+<!DOCTYPE html>
+<html lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+<body<?php echo $this->getBodyClass()?' class="'.$bgPatern.$this->getBodyClass().'"':'' ?> <?php echo $paternurl; ?>>
+<?php echo $this->getChildHtml('after_body_start') ?>
+<?php echo $this->getChildHtml('global_notices') ?>
+<?php echo $this->getChildHtml('header') ?>
+<div class="content-wrapper">
+    <div class="container_12">
+		<?php echo $this->getChildHtml('breadcrumbs') ?>
+        <div class="main-container col2-right-layout">
+            <div class="column-wrapper">
+				<div class="grid_9 col-main">
+					<?php echo $this->getChildHtml('global_messages') ?>
+					<?php echo $this->getChildHtml('content') ?>
+				</div>
+			</div>
+            <aside class="grid_3 sidebar sidebar-right">
+                <?php echo $this->getChildHtml('sidebar') ?>
+            </aside>
+            <div class="clear"></div>
+        </div>    
+    </div>
+</div>
+<?php echo $this->getChildHtml('footer') ?>
+<?php echo $this->getChildHtml('before_body_end') ?>
+<?php echo $this->getAbsoluteFooter() ?>
+</body>
+</html>

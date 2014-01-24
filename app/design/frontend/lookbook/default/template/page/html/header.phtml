@@ -1,0 +1,67 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<?php
+    $customlogo = MAGE::helper('ThemeOptionsLookbook')->getThemeOptionsLookbook('customlogo');
+    $mediaurl = MAGE::helper('ThemeOptionsLookbook')->getThemeOptionsLookbook('mediaurl');
+?>
+<header id="header" <?php if($this->getChildHtml('header_slider_container')){echo ' class="header-slider"';} ?>>
+	<div class="top-box-wrapper">
+		<div class="container_12">
+			<div class="grid_12">
+				<?php echo $this->getChildHtml('topLinks') ?>
+				<dl class="company-links">
+					<dt>
+						<a href="#"><span><i class="icon-building"></i><span><?php echo $this->__('Company') ?></span></span></a>
+					</dt>
+					<dd>
+						<?php echo $this->getChildHtml('cms_footer_links') ?>
+						<?php echo $this->getChildHtml('footer_links') ?>
+					</dd>
+				</dl>
+				<p class="welcome-msg"><?php echo $this->getChildHtml('welcome') ?> <?php echo $this->getAdditionalHtml() ?></p>
+				<?php echo $this->getChildHtml('cart_sidebar') ?>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="header-wrapper">
+		<div class="container_12">
+			<div class="grid_3">
+				<?php if ($customlogo['logo_status'] == 0): ?>
+					<h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" <?php echo MAGE::helper('ThemeOptionsLookbook/Retina')->getRetinaData('logo'); ?> alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+					<?php else:?>
+					<h1 class="logo"><strong><?php echo $customlogo['logo_alt']; ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $customlogo['logo_alt']; ?>" class="logo"><img src="<?php echo $mediaurl.$customlogo['logo']; ?>" <?php echo MAGE::helper('ThemeOptionsLookbook/Retina')->getRetinaData('logo_custom'); ?> alt="<?php echo $customlogo['logo_alt']; ?>" /></a></h1>
+				<?php endif; ?>
+			</div>
+			<div class="quick-access grid_9">
+				<div class="menu-button"><span><?php echo $this->__('Menu') ?></span></div>
+				<?php echo $this->getChildHtml('topSearch') ?>
+				<?php echo $this->getChildHtml('topMenu') ?>
+				<div class="clear"></div>
+			</div>
+			<div class="clear"></div>
+			<?php echo $this->getChildHtml('topContainer'); ?>
+		</div>
+	</div>
+</header>
+<?php echo $this->getChildHtml('header_slider_container') ?>
+<?php if(Mage::getStoreConfig('meigee_lookbook_general/loginajax/status')): ?>
+	<script type="text/javascript">
+		/* Login ajax */
+		jQuery('.top-link-login').on('click', function(){
+			ajaxLogin("<?php echo $this->getUrl('meigeeactions/login/') ?>", false);
+			return false;
+		});
+	</script>
+<?php endif; ?>

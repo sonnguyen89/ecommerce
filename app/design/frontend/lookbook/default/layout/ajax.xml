@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+<cms_index_index>
+	<reference name="head">
+		<action method="addItem" ifconfig="ajax/wishlistcompare/enabled"><type>skin_js</type><name>js/ajaxwishlist.js</name><params/></action>
+	</reference>
+</cms_index_index>
+<!--produt detail page-->
+    <catalog_product_view>
+    	<reference name="head">
+		 	<!-- <action method="addJs" ifconfig="ajax/general/enabled"><script>VS/jquery-1.6.4.min.js</script></action> -->
+	    	<!-- <action method="addJs" ifconfig="ajax/general/enabled"><script>VS/noconflict.js</script></action> -->
+			<!-- <action method="addJs" ifconfig="ajax/wishlistcompare/enabled"><script>VS/ajaxwishlist.js</script></action> -->
+            <action method="addItem" ifconfig="ajax/wishlistcompare/enabled"><type>skin_js</type><name>js/ajaxwishlist.js</name><params/></action>
+        </reference>
+        <reference name="product.info">
+        	<action method="setTemplate" ifconfig="ajax/general/enabled"><template>ajax/catalog/product/view.phtml</template></action>
+        </reference>
+		<reference name="product.info.addto">
+	   		<action method="setTemplate" ifconfig="ajax/wishlistcompare/enabled"><template>ajax/catalog/product/view/addto.phtml</template></action>
+	   	</reference>
+        <reference name="product.info.addtocart">
+	        	<action method="setTemplate" ifconfig="ajax/general/enabled"><template>ajax/catalog/product/view/addtocart.phtml</template></action>
+	    </reference>
+    </catalog_product_view>
+	<!-- Category listing page-->
+    <catalog_category_default>
+    	<reference name="head">		
+            <!-- <action method="addJs" ifconfig="ajax/general/enabledpro"><script>VS/jquery-1.6.4.min.js</script></action> -->
+	    	<!-- <action method="addJs" ifconfig="ajax/general/enabledpro"><script>VS/noconflict.js</script></action> -->
+            <!-- <action method="addJs" ifconfig="ajax/wishlistcompare/enabled"><script>VS/ajaxwishlist.js</script></action> -->
+            <action method="addItem" ifconfig="ajax/wishlistcompare/enabled"><type>skin_js</type><name>js/ajaxwishlist.js</name><params/></action>
+			<block type="core/template" name="ajaxtoolbar" template="ajax/ajaxtoolbar.phtml" output="toHtml"></block>
+			<action method="addJs" ifconfig="ajax/ajaxtoolbar/enabled"><script>VS/ajaxtoolbar.js</script></action>
+			 <!-- <action method="addItem" ifconfig="ajax/general/enabledpro">
+                <type>skin_js</type>
+                <name>VS/js/fancybox/jquery.fancybox-1.3.4.js</name>
+            </action>
+            <action method="addItem" ifconfig="ajax/general/enabledpro">
+                <type>skin_js</type>
+                <name>VS/js/fancybox/jquery.easing-1.3.pack.js</name>
+            </action>
+			<action method="addItem" ifconfig="ajax/general/enabledpro">
+                <type>skin_js</type>
+                <name>VS/js/fancybox/jquery.mousewheel-3.0.4.pack.js</name>
+            </action>
+			<action method="addCss" ifconfig="ajax/general/enabledpro">
+                <stylesheet>VS/js/fancybox/jquery.fancybox-1.3.4.css</stylesheet>
+            </action> -->
+        </reference>
+		<reference name="product_list">
+    		<action method="setTemplate"><template>ajax/catalog/product/view/list.phtml</template></action>
+    	</reference>
+    </catalog_category_default>
+		<!-- Category listing page layered-->
+    <catalog_category_layered>	
+		<reference name="head">
+            <!-- <action method="addJs" ifconfig="ajax/general/enabledpro"><script>VS/jquery-1.6.4.min.js</script></action> -->
+	    	<!-- <action method="addJs" ifconfig="ajax/general/enabledpro"><script>VS/noconflict.js</script></action> -->
+            <!-- <action method="addJs" ifconfig="ajax/wishlistcompare/enabled"><script>VS/ajaxwishlist.js</script></action> -->
+            <action method="addItem" ifconfig="ajax/wishlistcompare/enabled"><type>skin_js</type><name>js/ajaxwishlist.js</name><params/></action>
+			<block type="core/template" name="ajaxtoolbar" template="ajax/ajaxtoolbar.phtml" output="toHtml"></block>
+			<action method="addJs" ifconfig="ajax/ajaxtoolbar/enabled"><script>VS/ajaxtoolbar.js</script></action>
+			<!-- <action method="addItem" ifconfig="ajax/general/enabledpro">
+                <type>skin_js</type>
+                <name>VS/js/fancybox/jquery.fancybox-1.3.4.js</name>
+            </action> -->
+            <!-- <action method="addItem" ifconfig="ajax/general/enabledpro">
+                <type>skin_js</type>
+                <name>VS/js/fancybox/jquery.easing-1.3.pack.js</name>
+            </action> -->
+			<!-- <action method="addItem" ifconfig="ajax/general/enabledpro">
+                <type>skin_js</type>
+                <name>VS/js/fancybox/jquery.mousewheel-3.0.4.pack.js</name>
+            </action>
+			 <action method="addCss" ifconfig="ajax/general/enabledpro">
+                <stylesheet>VS/js/fancybox/jquery.fancybox-1.3.4.css</stylesheet>
+            </action> -->
+        </reference>
+    	
+    	<reference name="product_list">
+    		<action method="setTemplate"><template>ajax/catalog/product/view/list.phtml</template></action>
+    	</reference>
+    </catalog_category_layered>
+	
+	<!-- optins page in lightbox-->
+    <ajax_index_options>
+    	<reference name="root">
+            <action method="setTemplate"><template>page/empty.phtml</template></action>
+        </reference>
+        <reference name="head">
+        	<!-- <action method="addItem"><type>js</type><name>VS/jquery-1.6.4.min.js</name></action> -->
+        	<!-- <action method="addItem"><type>js</type><name>VS/noconflict.js</name></action> -->
+			<action method="addItem" ifconfig="ajax/wishlistcompare/enabled"><type>skin_js</type><name>js/ajaxwishlist.js</name><params/></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs"><script>varien/product.js</script></action>
+            <action method="addJs"><script>varien/configurable.js</script></action>
+
+            <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/><!--<if/><condition>can_load_calendar_js</condition>--></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
+			
+			<!--Cloud Zoom-->
+            <action method="addItem"><type>skin_js</type><name>js/cloud-zoom.1.0.2.min.js</name><params/></action>
+			
+        </reference>
+        <reference name="content">
+            <block type="catalog/product_view" name="product.info" template="ajax/catalog/product/options.phtml">
+			
+                <block type="catalog/product_view_media" name="product.info.media" as="media" template="ajax/catalog/product/media.phtml"/>
+                <!--
+                <action method="addReviewSummaryTemplate"><type>default</type><template>review/helper/summary.phtml</template></action>
+                <action method="addReviewSummaryTemplate"><type>short</type><template>review/helper/summary_short.phtml</template></action>
+                <action method="addReviewSummaryTemplate"><type>...</type><template>...</template></action>
+                -->
+                
+                <block type="catalog/product_view" name="product.info.addtocart" as="addtocart" template="ajax/catalog/product/view/addtocart.phtml"/>
+
+                <block type="catalog/product_view" name="product.info.options.wrapper" as="product_options_wrapper" template="catalog/product/view/options/wrapper.phtml" translate="label">
+                    <label>Info Column Options Wrapper</label>
+                    <block type="core/template" name="options_js" template="catalog/product/view/options/js.phtml"/>
+                    <block type="catalog/product_view_options" name="product.info.options" as="product_options" template="catalog/product/view/options.phtml">
+                        <action method="addOptionRenderer"><type>text</type><block>catalog/product_view_options_type_text</block><template>catalog/product/view/options/type/text.phtml</template></action>
+                        <action method="addOptionRenderer"><type>file</type><block>catalog/product_view_options_type_file</block><template>catalog/product/view/options/type/file.phtml</template></action>
+                        <action method="addOptionRenderer"><type>select</type><block>catalog/product_view_options_type_select</block><template>catalog/product/view/options/type/select.phtml</template></action>
+                        <action method="addOptionRenderer"><type>date</type><block>catalog/product_view_options_type_date</block><template>catalog/product/view/options/type/date.phtml</template></action>
+                </block>
+                        <block type="core/html_calendar" name="html_calendar" as="html_calendar" template="page/js/calendar.phtml"/>
+                    </block>
+                <block type="catalog/product_view" name="product.info.options.wrapper.bottom" as="product_options_wrapper_bottom" template="catalog/product/view/options/wrapper/bottom.phtml" translate="label">
+                    <label>Bottom Block Options Wrapper</label>
+                    <action method="insert"><block>product.tierprices</block></action>
+                    <block type="catalog/product_view" name="product.clone_prices" as="prices" template="catalog/product/view/price_clone.phtml"/>
+                    <action method="append"><block>product.info.addtocart</block></action>
+                    <action method="append"><block>product.info.addto</block></action>
+                </block>
+
+                <block type="core/template_facade" name="product.info.container1" as="container1">
+                    <action method="setDataByKey"><key>alias_in_layout</key><value>container1</value></action>
+                    <action method="setDataByKeyFromRegistry"><key>options_container</key><key_in_registry>product</key_in_registry></action>
+                    <action method="append"><block>product.info.options.wrapper</block></action>
+                    <action method="append"><block>product.info.options.wrapper.bottom</block></action>
+                </block>
+                <block type="core/template_facade" name="product.info.container2" as="container2">
+                    <action method="setDataByKey"><key>alias_in_layout</key><value>container2</value></action>
+                    <action method="setDataByKeyFromRegistry"><key>options_container</key><key_in_registry>product</key_in_registry></action>
+                    <action method="append"><block>product.info.options.wrapper</block></action>
+                    <action method="append"><block>product.info.options.wrapper.bottom</block></action>
+                </block>
+                <action method="unsetCallChild"><child>container1</child><call>ifEquals</call><if>0</if><key>alias_in_layout</key><key>options_container</key></action>
+                <action method="unsetCallChild"><child>container2</child><call>ifEquals</call><if>0</if><key>alias_in_layout</key><key>options_container</key></action>
+				<block type="catalog/product_view" name="product.info.addto" as="addto" template="ajax/catalog/product/view/addto.phtml"/>
+            </block>
+        </reference>
+    </ajax_index_options>
+</layout> 

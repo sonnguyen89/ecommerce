@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+
+-->
+<layout version="0.1.0">
+    <default>
+        <!-- Mage_Reports -->
+        <reference name="sidebar">
+            <block type="reports/product_viewed" before="right.permanent.callout" name="sidebar.reports.product.viewed">
+                <action method="setTemplate" ifconfig="meigee_lookbook_sidebar/block_viewed/status">
+                    <template>reports/product_viewed.phtml</template> 
+                </action>
+            </block>
+            <block type="reports/product_compared" before="right.permanent.callout" name="sidebar.reports.product.compared">
+                <action method="setTemplate" ifconfig="meigee_lookbook_sidebar/block_compared/status">
+                    <template>reports/product_compared.phtml</template> 
+                </action>
+            </block>
+        </reference>
+    </default>
+
+    <catalog_category_layered_nochildren translate="label">
+        <label>Catalog Category (Without Subcategories)</label>
+        <remove name="sidebar.reports.product.viewed" />
+        <reference name="sidebar">
+            <block type="reports/product_viewed" before="right.permanent.callout" name="left.reports.product.viewed">
+                <action method="setTemplate" ifconfig="meigee_lookbook_sidebar/block_viewed/status">
+                    <template>reports/product_viewed.phtml</template> 
+                </action>
+            </block>
+        </reference>
+    </catalog_category_layered_nochildren>
+</layout>

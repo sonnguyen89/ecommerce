@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Meigee_MeigeewidgetsLookbook>
+            <version>0.0.1</version>
+        </Meigee_MeigeewidgetsLookbook>
+    </modules>
+    <global>
+        <helpers>
+            <meigeewidgetslookbook>
+                <class>Meigee_MeigeewidgetsLookbook_Helper</class>
+            </meigeewidgetslookbook>
+        </helpers>
+        <blocks>
+             <meigeewidgetslookbook>
+                <class>Meigee_MeigeewidgetsLookbook_Block</class>
+             </meigeewidgetslookbook>
+        </blocks>
+        <models>
+            <!-- ... -->
+            <meigeewidgetslookbook>
+                <class>Meigee_MeigeewidgetsLookbook_Model</class>
+            </meigeewidgetslookbook>   
+            <!-- ... -->
+        </models>
+    </global>
+    <!---->
+    <frontend>
+        <layout>
+            <updates>
+                <meigeewidgetslookbook>
+                    <file>meigee/widgetoptions.xml</file>
+                </meigeewidgetslookbook>
+            </updates>
+        </layout>
+    </frontend>
+</config>

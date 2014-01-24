@@ -1,0 +1,17 @@
+<?php  
+    $block_categories = MAGE::helper('ThemeOptionsLookbook')->getThemeOptionsLookbook('block_categories'); 
+?>
+<section class="block-vertical-nav">
+    <header>
+    	<h2><?php echo $this->__('Categories') ?></h2>
+    </header>
+    <div class="block-content">
+        <?php $_menu = $this->renderCategoriesMenuHtml(0,'level-top') ?>
+        <?php if($_menu): ?>
+                <ul <?php if ($block_categories['option_2'] == 1): ?> class="closed-default"<?php endif; ?> <?php if ($block_categories['option'] == 1): ?> id="categories-accordion" <?php endif; ?>>
+                	<?php echo $_menu ?>
+                </ul>
+        <?php endif ?>
+        
+    </div>
+</section>

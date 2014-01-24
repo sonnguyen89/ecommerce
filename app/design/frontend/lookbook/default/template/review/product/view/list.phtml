@@ -1,0 +1,179 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<?php $_items = $this->getReviewsCollection()->getItems();?>
+<div class="box-collateral box-reviews" id="customer-reviews">
+	<div class="section tabs">
+		<ul class="tabs">
+			<li class="current"><?php echo $this->__('Customer Reviews') ?></li>
+			<li><?php echo $this->__('Write Your Own Review') ?></li>
+		</ul>
+		<div class="box visible">
+			<?php if (count($_items)):?>
+				<?php echo $this->getChildHtml('toolbar') ?>
+				<ul>
+				<?php $i=0; foreach ($_items as $_review):?>
+					<li <?php if ($i++%2!==0) echo 'class="even"'; ?>>
+						<div class="rev-col-1">
+							<?php $_votes = $_review->getRatingVotes(); ?>
+							<?php if (count($_votes)): ?>
+							<table class="ratings-table">
+								<col width="1" />
+								<col />
+								<tbody>
+									<?php foreach ($_votes as $_vote): ?>
+									<tr>
+										<th><?php echo $this->escapeHtml($_vote->getRatingCode()) ?></th>
+										<td>
+											<div class="rating-box">
+												<div class="rating" style="width:<?php echo $_vote->getPercent() ?>%;"></div>
+											</div>
+										</td>
+									</tr>
+									<?php endforeach; ?>
+								</tbody>
+							</table>
+							<?php endif; ?>
+							
+						</div>
+						<div class="rev-col-2">
+							<h6><?php echo $this->htmlEscape($_review->getTitle()) ?></h6>
+							<small><?php 
+								echo $this->__('Review by <span>%s</span>', $this->htmlEscape($_review->getNickname())); 
+								echo $this->__('on %s', $this->formatDate($_review->getCreatedAt()), 'long') ?></small>
+							<div class="clear"></div>
+							<div class="review-txt">
+								<?php echo nl2br($this->htmlEscape($_review->getDetail())) ?>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</li>
+				<?php endforeach; ?>
+				</ul>
+				<div class="actions">
+					<button type="button" id="revies-button" class="button"><span><span><?php echo $this->__('View all') ?></span></span></button>
+				</div>
+				<script type="text/javascript">
+					jQuery(window).load(function() {
+						var review_txt_box = jQuery('.box-reviews .review-txt');
+						var number_of_lines = 5; //Number of Review Lines to Output
+						var review_button = '<i class="icon-sort-down"></i>'; //Review Link Text
+						var review_button_active = '<i class="icon-sort-up"></i>'; //Review Opened Link Text
+						var review_txt_box_height = parseFloat(review_txt_box.css('line-height'))*number_of_lines;
+						review_txt_box.each(function(){
+							var this_box = jQuery(this);
+							var this_box_height = this_box.height();
+							if(this_box_height > review_txt_box_height){
+								this_box.css({'height': review_txt_box_height, 'overflow': 'hidden'});
+								this_box.after('<a class="full-review">'+review_button+'</a><div class="clear"></div>');
+								var review_link = this_box.next('.full-review');
+								var is_full = false;
+								review_link.on('click', function(){
+									if(is_full == false){
+										showAll();
+										setTimeout(function(){
+											this_box.animate({
+												height: this_box_height
+											}, 'medium', function(){
+												review_link.html(review_button_active);
+											});
+											is_full = true;
+										}, 1200);
+									}else{
+										this_box.animate({
+											height: review_txt_box_height
+										  }, 'medium', function(){
+											review_link.html(review_button);
+										});
+										is_full = false;
+									}
+								});
+							}
+						});
+					
+						var listContainer = jQuery('.box-reviews .box ul');
+						var lis = listContainer.find('li');
+						var fullHeigth = listContainer.outerHeight(true)+32;
+						var startHeigth = lis.eq(0).outerHeight(true) + lis.eq(1).outerHeight(true);
+						
+						listContainer.css({
+							'height': startHeigth,
+							'overflow': 'hidden'
+						});
+						
+						var revButton = jQuery('#revies-button');
+						
+						function showAll(){
+							listContainer.animate({
+								height: fullHeigth
+							}, 1000, function(){
+								listContainer.css('height', 'auto');
+							});
+							revButton.addClass('open').find('span span').html('<?php echo $this->__('Hide') ?>');
+						}
+						function hide(){
+							listContainer.animate({
+								height: startHeigth
+							}, 1000);
+							revButton.removeClass('open').find('span span').html('<?php echo $this->__('View all') ?>');
+						}
+						revButton.on('click', function(){
+							if(!revButton.hasClass('open')){
+								showAll();
+							}else{
+								hide();
+							}
+						});
+						
+						jQuery(window).resize(function(){
+							fullHeigth = listContainer.outerHeight(true)+32;
+							startHeigth = lis.eq(0).outerHeight(true) + lis.eq(1).outerHeight(true);
+							listContainer.css({
+								'height': startHeigth,
+								'overflow': 'hidden'
+							});
+						});
+						
+					});
+				</script>
+				<?php echo $this->getChildHtml('toolbar') ?>
+			<?php else:?>
+				<?php echo $this->__('No Reviews') ?>
+			<?php endif;?>
+		</div>
+		<div class="box">
+			<?php echo $this->getChildHtml('review_form') ?>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	jQuery('ul.tabs').on('click', 'li:not(.current)', function() {
+		jQuery(this).addClass('current').siblings().removeClass('current')
+			.parents('div.section').find('div.box').eq(jQuery(this).index()).fadeIn(150).siblings('div.box').hide();
+	})
+</script>

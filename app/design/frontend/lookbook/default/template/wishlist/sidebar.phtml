@@ -1,0 +1,59 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+/* @var $this Mage_Wishlist_Block_Customer_Sidebar */
+?>
+<?php  
+    $block_wishlist = MAGE::helper('ThemeOptionsLookbook')->getThemeOptionsLookbook('block_wishlist'); 
+?>
+<section class="block-wishlist" <?php if ($block_wishlist['option'] == 1): ?> id="wishlist-slider" <?php endif; ?>>
+    <header>
+        <h2><?php echo $this->getTitle(); ?></h2>
+    </header>
+    <div class="block-content">
+    <p class="block-subtitle"><?php echo $this->__('Last Added Items') ?></p>
+    <?php if ($this->hasWishlistItems()): ?>
+    <div class="es-carousel">
+        <ul class="carousel-ul">
+         <?php foreach ($this->getWishlistItems() as $_item): ?>
+            <?php $product = $_item->getProduct(); ?>
+            <li class="item">
+                <a href="<?php echo $this->getProductUrl($_item) ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>" class="product-image">
+                    <img src="<?php echo $this->helper('catalog/image')->init($product, 'thumbnail')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(100, null); ?>" <?php echo MAGE::helper('ThemeOptionsLookbook/Retina')->getRetinaData('wishlist_sidebar_item', $product); ?> alt="<?php echo $this->escapeHtml($product->getName()) ?>" />
+                </a>
+                <div class="product-details">
+                    <a href="<?php echo $this->getItemRemoveUrl($_item) ?>" title="<?php echo $this->__('Remove This Item') ?>" onclick="return confirm('<?php echo $this->__('Are you sure you would like to remove this item from the wishlist?') ?>');" class="btn-remove"><i class="icon-remove"></i></a>
+                    <p class="product-name"><a href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $this->escapeHtml($product->getName()) ?></a></p>
+                    <?php echo $this->getPriceHtml($product, false, '-wishlist') ?>
+                </div>
+				<div class="clear"></div>
+            </li>
+        <?php endforeach; ?>
+        </ul>
+    </div>
+	<?php if ($block_wishlist['option'] == 1): ?>
+		<div class = 'next'><i class="icon-angle-right"></i></div>
+		<div class = 'prev unselectable'><i class="icon-angle-left"></i></div>
+	<?php endif ?>
+    <script type="text/javascript">decorateList('wishlist-sidebar');</script>
+    <div class="actions">
+        <a href="<?php echo $this->helper('wishlist')->getListUrl() ?>"><span><?php echo $this->__('Go to Wishlist') ?></span></a>
+    </div>
+    <?php else: ?>
+        <p class="empty"><?php echo $this->__('You have no items in your wishlist.') ?></p>
+    <?php endif ?>
+    </div>
+	<script type="text/javascript">
+		/* Wishlist Block Slider */
+		if(jQuery('#wishlist-slider').length){
+			wishlist_slider();
+			wishlist_set_height();
+		}
+	 /* Wishlist Block Slider */
+	</script>
+</section>

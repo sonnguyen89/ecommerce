@@ -1,0 +1,38 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+?>
+<footer id="footer">
+    <div class="container_12">
+		<div class="footer-top-block">
+			<?php echo $this->getChildHtml('footer.newsletter') ?>
+			<?php // Predefined Static Block
+			if ($static_html = $this->getChildHtml('lookbook_social_links')):
+				echo $static_html;
+			endif; ?>
+			<div class="clear"></div>
+		</div>
+		<div class="footer-block">
+			<?php // Predefined Static Block
+			if ($static_html = $this->getChildHtml('lookbook_custom_footer')):
+				echo '<div class="custom_footer">'.$static_html.'<div class="clear"></div></div>';
+			endif; ?>
+			<div class="bottom-block">
+				<?php echo $this->getChildHtml('currency') ?>
+				<?php if($this->getChildHtml('currency') and  $this->getChildHtml('store_language')): ?>
+				<div class="flags-divider"></div>
+				<?php endif; ?>
+				<?php echo $this->getChildHtml('store_language') ?>
+				<address><?php echo $this->getCopyright() ?></address>
+				<div class="clear"></div>
+				<?php echo $this->getChildHtml('store_switcher') ?>
+				<div class="clear"></div>
+			</div>
+		</div>
+    </div>
+</footer>

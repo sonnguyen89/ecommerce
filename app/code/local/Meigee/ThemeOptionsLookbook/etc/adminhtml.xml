@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <meigee_lookbook_general>
+                                        <title>General Options</title>
+                                        <sort_order>1</sort_order>
+                                    </meigee_lookbook_general>
+                                    <meigee_lookbook_design>
+                                        <title>Theme Design</title>
+                                        <sort_order>2</sort_order>
+                                    </meigee_lookbook_design>
+                                    <meigee_lookbook_productpage>
+                                        <title>Product Page</title>
+                                        <sort_order>3</sort_order>
+                                    </meigee_lookbook_productpage>
+                                    <meigee_lookbook_sidebar>
+                                        <title>Sidebar Blocks</title>
+                                        <sort_order>4</sort_order>
+                                    </meigee_lookbook_sidebar>
+                                    <meigee_lookbook_headerslider>
+                                        <title>Header Slider</title>
+                                        <sort_order>5</sort_order>
+                                    </meigee_lookbook_headerslider>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                 </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

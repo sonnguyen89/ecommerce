@@ -1,0 +1,43 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php if(count($this->getItemCollection()->getItems())): ?>
+<h2><?php echo $this->__('You may also be interested in the following product(s)') ?></h2>
+<div class="box-collateral box-up-sell">    
+    <?php  $this->setColumnCount(4); // uncomment this line if you want to have another number of columns. also can be changed in layout ?>
+    <?php $this->resetItemsIterator() ?> 
+    <ul class="products-grid" id="upsell-product-table">
+    <?php $this->resetItemsIterator(); while ($_item=$this->getIterableItem()) : ?>
+        <li class="item grid_3 alpha">
+			<a class="product-image" href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(420, null); ?>" <?php echo MAGE::helper('ThemeOptionsLookbook/Retina')->getRetinaData('upsell', $_item); ?> alt="<?php echo $this->escapeHtml($_item->getName()) ?>" /></a>
+            <h3 class="product-name"><a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->escapeHtml($_item->getName()) ?></a></h3>
+            <?php echo $this->getPriceHtml($_item, true, '-upsell') ?>
+            <?php echo $this->getReviewsSummaryHtml($_item) ?>
+        </li>
+    <?php endwhile; ?>
+    </ul>
+</div>
+<?php endif ?>

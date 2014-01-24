@@ -1,0 +1,24 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+?>
+<section class="block-tags">
+    <header>
+        <h2><?php echo $this->__('Popular Tags'); ?></h2>
+    </header>
+    <div class="block-content">
+        <ul class="tags-list">
+            <?php foreach ($this->getTags() as $_tag): ?>
+                <li><a href="<?php echo $_tag->getTaggedProductsUrl() ?>" style="font-size:<?php echo $_tag->getRatio()*70+75 ?>%;"><?php echo $this->escapeHtml($_tag->getName()) ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+        <div class="actions">
+            <a href="<?php echo $this->getUrl('tag/list') ?>"><span><?php echo $this->__('View All Tags') ?></span></a>
+        </div>
+    </div>
+</section>

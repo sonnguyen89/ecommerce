@@ -1,0 +1,48 @@
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+ 
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+   only screen and (min-resolution: 144dpi) {
+
+	header#header a.logo{
+		width: 212px;
+		height: 60px;
+	}
+	
+	.account-login .registered-users .form-list .input-box input.input-text{
+		background-image:url(../images/@x2/input_star@x2.png);
+		background-repeat: no-repeat;
+		background-position: right 7px;
+		background-size:18px 10px;
+	}
+   
+	
+	
+	.rating-box,
+	.rating-box .rating{background-size:15px 107px!important;}
+	.rating-box {background:url(../images/@x2/bkg_rating@x2.gif) 0 0 repeat-x; width:75px;}
+	.rating-box .rating{background:url(../images/@x2/bkg_rating@x2.gif) 0 100% repeat-x;}
+	
+	.ratings-table .rating-box,
+	.ratings-table .rating-box .rating{background-size:9px 107px!important;}
+	.ratings-table .rating-box { width:43px; background:url(../images/@x2/bkg_rating_2@x2.gif) 0 0 repeat-x; }
+	.ratings-table .rating-box .rating{ background:url(../images/@x2/bkg_rating_2@x2.gif) 0 100% repeat-x;}
+	
+	.catalog-product-view .box-reviews .data-table thead th span{background-image:url(../images/@x2/review_stars@x2.png); background-size:35px 76px!important;}
+	.catalog-product-view .box-reviews .data-table thead th span.one-star{background-position:center 4px;}
+	.catalog-product-view .box-reviews .data-table thead th span.two-stars{background-position:center -11px;}
+	.catalog-product-view .box-reviews .data-table thead th span.three-stars{background-position:center -27px;}
+	.catalog-product-view .box-reviews .data-table thead th span.four-stars{background-position:center -43px;}
+	.catalog-product-view .box-reviews .data-table thead th span.five-stars{background-position:center -58px;}
+	
+	.footer-block .custom_footer .text-block a{
+		width: 83px;
+		height: 83px;
+	}
+
+}

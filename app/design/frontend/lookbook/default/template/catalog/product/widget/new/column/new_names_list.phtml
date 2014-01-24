@@ -1,0 +1,30 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+?>
+<?php if (($_products = $this->getProductCollection()) && $_products->getSize()): ?>
+<div class="widget widget-new-products">
+    <section class="block-list">
+        <header>
+            <h2><?php echo $this->__('New Products') ?></h2>
+        </header>
+        <div class="block-content">
+			<?php echo $this->getPagerHtml() ?>
+            <?php $suffix = $this->getNameInLayout(); ?>
+            <ol id="widget-new-products-<?php echo $suffix; ?>">
+            <?php foreach ($_products->getItems() as $_product): ?>
+                <li class="item">
+                    <p class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>)"><?php echo $this->helper('catalog/output')->productAttribute($_product, $_product->getName() , 'name') ?></a></p>
+                </li>
+            <?php endforeach; ?>
+            </ol>
+            <script type="text/javascript">decorateList('widget-new-products-<?php echo $suffix; ?>', 'none-recursive')</script>
+        </div>
+    </section>
+</div>
+<?php endif; ?>

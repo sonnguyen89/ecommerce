@@ -1,0 +1,79 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see Mage_Catalog_Block_Navigation
+ */
+?>
+<?php
+/**
+ * $this->renderCategoriesMenuHtml() supports optional arguments:
+ * int Level number for list item class to start from
+ * string Extra class of outermost list items
+ * string If specified wraps children list in div with this class
+ */
+?>
+<?php $_menu = $this->renderCategoriesMenuHtml(0,'level-top') ?>
+<?php 
+	$routeName = Mage::app()->getRequest()->getRouteName();  
+	$identifier = Mage::getSingleton('cms/page')->getIdentifier();
+	
+	$navigation = MAGE::helper('ThemeOptionsLookbook')->getThemeOptionsLookbook('menu'); 
+?>
+<?php if($_menu): ?>
+<nav class="nav-container">
+    <ul class="<?php if ($navigation['type'] == 'menu_wide') echo 'nav-wide'; else echo 'nav'; ?>" id="nav">
+    	<?php if ($navigation['home'] == 1): ?><li class="homepage level-top <?php if($routeName == 'cms' && $identifier == 'home'): echo 'active'; endif; ?>"><a class="level-top" href="<?php echo $this->getUrl('') ?>"><span><?php echo $this->__('Home') ?></span></a></li><?php endif; ?>
+        <?php 
+	        echo $_menu;
+	        $custom_tab = Mage::getModel('cms/block')->load('meigee_navigation_custom_tab');
+	        $custom_tab_2 = Mage::getModel('cms/block')->load('meigee_navigation_custom_tab');
+	        if($custom_tab->getIsActive()) {
+	            echo '
+	            <li class="level0 level-top parent custom-block">
+	                <a href="#" class="level-top">
+	                    <span>'.$custom_tab->getTitle().'</span>
+	                </a>
+	                <div class="static-wrapper">'.$this->getLayout()->createBlock('cms/block')->setBlockId('meigee_navigation_custom_tab')->toHtml().'</div>
+	            </li>';
+	        }
+	        if($custom_tab_2->getIsActive()) {
+	            echo '
+	            <li class="level0 level-top parent custom-block">
+	                <a href="#" class="level-top">
+	                    <span>'.$custom_tab_2->getTitle().'</span>
+	                </a>
+	                <div class="static-wrapper">'.$this->getLayout()->createBlock('cms/block')->setBlockId('meigee_navigation_custom_tab_2')->toHtml().'</div>
+	            </li>';
+	        }
+        ?>
+
+    </ul>
+</nav>
+<?php endif ?>

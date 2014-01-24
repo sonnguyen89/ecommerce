@@ -1,0 +1,22 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+?>
+<section class="block-banner">
+    <div class="block-content">
+        <?php if(strtolower(substr($this->getLinkUrl(),0,4))==='http'): ?>
+            <a href="<?php echo $this->getLinkUrl() ?>" title="<?php echo $this->__($this->getImgAlt()) ?>">
+        <?php elseif($this->getLinkUrl()): ?>
+            <a href="<?php echo $this->getUrl($this->getLinkUrl()) ?>" title="<?php echo $this->__($this->getImgAlt()) ?>">
+        <?php endif; ?>
+            <img src="<?php echo $this->getSkinUrl($this->getImgSrc()) ?>"<?php if(!$this->getLinkUrl()): ?> title="<?php echo $this->__($this->getImgAlt()) ?>"<?php endif; ?> alt="<?php echo $this->__($this->getImgAlt()) ?>" />
+        <?php if($this->getLinkUrl()): ?>
+        </a>
+        <?php endif ?>
+    </div>
+</section>
