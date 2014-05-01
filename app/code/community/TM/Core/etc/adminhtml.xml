@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <templates_master>
+            <title>Templates Master</title>
+            <sort_order>71</sort_order>
+            <children>
+                <tmcore_module translate="title" module="tmcore">
+                    <title>Modules</title>
+                    <sort_order>999</sort_order>
+                    <action>adminhtml/tmcore_module/index</action>
+                </tmcore_module>
+            </children>
+        </templates_master>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <tmcore>
+                                        <title>Core</title>
+                                    </tmcore>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <templates_master>
+                        <title>Templates Master</title>
+                        <sort_order>71</sort_order>
+                        <children>
+                            <tmcore_module translate="title" module="tmcore">
+                                <title>Modules</title>
+                                <sort_order>999</sort_order>
+                            </tmcore_module>
+                        </children>
+                    </templates_master>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

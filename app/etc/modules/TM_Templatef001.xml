@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <TM_Templatef001>
+            <active>true</active>
+            <codePool>local</codePool>
+            <tm_link><![CDATA[http://templates-master.com/magento-templates/free-absolute-magento-theme.html]]></tm_link>
+        </TM_Templatef001>
+    </modules>
+</config> 
